@@ -15,16 +15,29 @@ namespace MyPhoneAccount
 {
     public partial class MainForm : Form
     {
+        List<Person> _persons = new List<Person>();
+
+        AddNewUserForm _addNewUserForm = new AddNewUserForm();
+
         public MainForm()
         {
             InitializeComponent();
         }
+
         private void btnEkle_Click(object sender, EventArgs e)
         {
-            
-            
-            AddNewUserForm AddNew = new AddNewUserForm();
-            AddNew.Show();
+            _addNewUserForm.Clear();
+
+            var result = _addNewUserForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                _persons.Add(_addNewUserForm.ReturnPerson);
+            }
+
+            string personJson = JsonConvert.SerializeObject(_persons);
+
+            File.WriteAllText("persons.json", personJson);
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)

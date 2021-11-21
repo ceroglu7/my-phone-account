@@ -29,44 +29,44 @@ namespace MyPhoneAccount
         /// </summary>
         private void InitializeComponent()
         {
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.radioBtnPerson = new System.Windows.Forms.RadioButton();
+            this.radioBtnCompany = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNameSurname = new System.Windows.Forms.TextBox();
             this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtGSM = new System.Windows.Forms.TextBox();
             this.txtCompany = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // radioButton1
+            // radioBtnPerson
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(172, 12);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(41, 17);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Kişi";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.radioBtnPerson.AutoSize = true;
+            this.radioBtnPerson.Location = new System.Drawing.Point(172, 12);
+            this.radioBtnPerson.Name = "radioBtnPerson";
+            this.radioBtnPerson.Size = new System.Drawing.Size(41, 17);
+            this.radioBtnPerson.TabIndex = 0;
+            this.radioBtnPerson.TabStop = true;
+            this.radioBtnPerson.Text = "Kişi";
+            this.radioBtnPerson.UseVisualStyleBackColor = true;
+            this.radioBtnPerson.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
-            // radioButton2
+            // radioBtnCompany
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(219, 12);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(50, 17);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "Firma";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.radioBtnCompany.AutoSize = true;
+            this.radioBtnCompany.Location = new System.Drawing.Point(219, 12);
+            this.radioBtnCompany.Name = "radioBtnCompany";
+            this.radioBtnCompany.Size = new System.Drawing.Size(50, 17);
+            this.radioBtnCompany.TabIndex = 1;
+            this.radioBtnCompany.TabStop = true;
+            this.radioBtnCompany.Text = "Firma";
+            this.radioBtnCompany.UseVisualStyleBackColor = true;
+            this.radioBtnCompany.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // label1
             // 
@@ -112,15 +112,15 @@ namespace MyPhoneAccount
             this.txtMail.Size = new System.Drawing.Size(248, 20);
             this.txtMail.TabIndex = 11;
             // 
-            // button1
+            // btnAdd
             // 
-            this.button1.Location = new System.Drawing.Point(16, 288);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(248, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Ekle";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnAdd.Location = new System.Drawing.Point(16, 288);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(248, 23);
+            this.btnAdd.TabIndex = 12;
+            this.btnAdd.Text = "Ekle";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // label5
             // 
@@ -163,7 +163,7 @@ namespace MyPhoneAccount
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(276, 332);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtCompany);
@@ -174,8 +174,8 @@ namespace MyPhoneAccount
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.radioButton2);
-            this.Controls.Add(this.radioButton1);
+            this.Controls.Add(this.radioBtnCompany);
+            this.Controls.Add(this.radioBtnPerson);
             this.Name = "AddNewUserForm";
             this.Text = "Rehbere Ekle";
             this.ResumeLayout(false);
@@ -185,15 +185,15 @@ namespace MyPhoneAccount
 
         #endregion
 
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.RadioButton radioButton2;
+        private System.Windows.Forms.RadioButton radioBtnPerson;
+        private System.Windows.Forms.RadioButton radioBtnCompany;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNameSurname;
         private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtGSM;
         private System.Windows.Forms.TextBox txtCompany;
         private System.Windows.Forms.TextBox txtMail;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
