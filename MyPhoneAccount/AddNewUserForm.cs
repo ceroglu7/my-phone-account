@@ -68,13 +68,14 @@ namespace MyPhoneAccount
                 ReturnPerson = person;
 
                 this.DialogResult = DialogResult.OK;
-
+                
                 this.Hide();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+            
         }
     }
 }
