@@ -109,6 +109,12 @@ namespace MyPhoneAccount
                 string personJson = JsonConvert.SerializeObject(_persons);
                 string path = "persons.json";
                 File.WriteAllText(path, personJson);
+                lblNoPerson.Text = "Kayıt Seçilmeli";
+                lblFullName.Text = null;
+                lblCompanyName.Text = null;
+                lblGSM.Text = null;
+                lblPhone.Text = null;
+                lblMail.Text = null;
             }
 
 
