@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FluentValidation.Results;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -7,7 +8,7 @@ namespace MyPhoneAccount
 {
     public partial class AddNewUserForm : Form
     {
-        public Person ReturnPerson { get; set; }
+        public PersonDto.Person ReturnPerson { get; set; }
 
         public AddNewUserForm()
         {
@@ -50,9 +51,10 @@ namespace MyPhoneAccount
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+
             try
             {
-                Person person = new Person
+                PersonDto.Person person = new PersonDto.Person
                 {
                     Fullname = txtNameSurname.Text,
                     GSM = txtGSM.Text,
@@ -62,6 +64,22 @@ namespace MyPhoneAccount
 
                 if (radioBtnCompany.Checked)
                     person.CompanyName = txtCompany.Text;
+
+                //Validation
+
+                PersonDtoValidator validation = new PersonDtoValidator();
+                ValidationResult result = validation.Validate(person);
+                if (!result.IsValid)
+                {
+                    string errorMessage = "";
+                    foreach (var error in result.Errors)
+                    {
+                        errorMessage += $"{error}  \n";
+                    }
+                    MessageBox.Show(errorMessage,"Hatalar",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    return;
+                }
+
 
                 //Validation
 

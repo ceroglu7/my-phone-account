@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
-
+using FluentValidation;
+using Microsoft.Azure.Amqp.Framing;
 
 namespace MyPhoneAccount
 {
     public partial class MainForm : Form
     {
-        List<Person> _persons = new List<Person>();
+        List<PersonDto.Person> _persons = new List<PersonDto.Person>();
         AddNewUserForm _addNewUserForm = new AddNewUserForm();
         public MainForm()
         {
@@ -45,7 +46,7 @@ namespace MyPhoneAccount
                 var item = listView1.SelectedItems[0].Index;
                 string path = @"persons.json";
                 string PersonText = File.ReadAllText(path);
-                _persons = JsonConvert.DeserializeObject<List<Person>>(PersonText);
+                _persons = JsonConvert.DeserializeObject<List<PersonDto.Person>>(PersonText);
                 lblFullName.Text = "Ad Soyad : " + _persons[item].Fullname;
                 lblCompanyName.Text = "Firma Adı : " +  _persons[item].CompanyName;
                 lblGSM.Text = "GSM No : " + _persons[item].GSM;
@@ -77,14 +78,14 @@ namespace MyPhoneAccount
                 listView1.Items.Add("Kişi yada Firma Eklenmemiş");
             }
             string PersonText = File.ReadAllText(path);
-            _persons = JsonConvert.DeserializeObject<List<Person>>(PersonText);
+            _persons = JsonConvert.DeserializeObject<List<PersonDto.Person>>(PersonText);
 
             
             
             
             if (_persons==null)
             {
-                _persons = new List<Person>();
+                _persons = new List<PersonDto.Person>();
                 listView1.Items.Add("Kişi yada Firma Eklenmemiş");
             }
             else
@@ -128,6 +129,15 @@ namespace MyPhoneAccount
                 var listViewItem = new ListViewItem(row);
                 listView1.Items.Add(listViewItem);
             }
+        }
+    }
+    public class PersonDtoValidator : AbstractValidator<PersonDto.Person>
+    {
+        public PersonDtoValidator()
+        {
+            RuleFor(c => c.Email).EmailAddress().WithMessage("Mail bilgisi hatalı girildi").When(i=>!string.IsNullOrEmpty(i.Email));
+            RuleFor(c => c.Fullname).Length(3, 20).NotEmpty().NotNull().WithMessage("Ad Soyad bilgisi hatalı") ;
+            RuleFor(c => c.GSM).Length(11).NotNull().NotEmpty().WithMessage("GSM Hatalı");
         }
     }
 }
