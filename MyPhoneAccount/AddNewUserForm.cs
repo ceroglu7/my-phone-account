@@ -79,6 +79,7 @@ namespace MyPhoneAccount
                     MessageBox.Show(errorMessage,"Hatalar",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                     return;
                 }
+                
 
 
                 //Validation
@@ -94,6 +95,11 @@ namespace MyPhoneAccount
                 MessageBox.Show(ex.Message);
             }
             
+        }
+
+        private void AddNewUserForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

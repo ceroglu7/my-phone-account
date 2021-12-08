@@ -29,7 +29,7 @@ namespace MyPhoneAccount
         /// </summary>
         private void InitializeComponent()
         {
-            this.listView1 = new System.Windows.Forms.ListView();
+            this.lstvResult = new System.Windows.Forms.ListView();
             this.btnEkle = new System.Windows.Forms.Button();
             this.btnDeletePerson = new System.Windows.Forms.Button();
             this.lblNoPerson = new System.Windows.Forms.Label();
@@ -38,21 +38,23 @@ namespace MyPhoneAccount
             this.lblGSM = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
             this.lblMail = new System.Windows.Forms.Label();
+            this.cmbSearchCategory = new System.Windows.Forms.ComboBox();
+            this.txtSearch = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // listView1
+            // lstvResult
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(12, 12);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(197, 265);
-            this.listView1.TabIndex = 0;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.lstvResult.HideSelection = false;
+            this.lstvResult.Location = new System.Drawing.Point(12, 34);
+            this.lstvResult.Name = "lstvResult";
+            this.lstvResult.Size = new System.Drawing.Size(197, 265);
+            this.lstvResult.TabIndex = 0;
+            this.lstvResult.UseCompatibleStateImageBehavior = false;
+            this.lstvResult.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // btnEkle
             // 
-            this.btnEkle.Location = new System.Drawing.Point(215, 254);
+            this.btnEkle.Location = new System.Drawing.Point(215, 276);
             this.btnEkle.Name = "btnEkle";
             this.btnEkle.Size = new System.Drawing.Size(192, 23);
             this.btnEkle.TabIndex = 1;
@@ -62,7 +64,7 @@ namespace MyPhoneAccount
             // 
             // btnDeletePerson
             // 
-            this.btnDeletePerson.Location = new System.Drawing.Point(216, 225);
+            this.btnDeletePerson.Location = new System.Drawing.Point(216, 247);
             this.btnDeletePerson.Name = "btnDeletePerson";
             this.btnDeletePerson.Size = new System.Drawing.Size(191, 23);
             this.btnDeletePerson.TabIndex = 2;
@@ -73,7 +75,7 @@ namespace MyPhoneAccount
             // lblNoPerson
             // 
             this.lblNoPerson.AutoSize = true;
-            this.lblNoPerson.Location = new System.Drawing.Point(215, 115);
+            this.lblNoPerson.Location = new System.Drawing.Point(215, 137);
             this.lblNoPerson.Name = "lblNoPerson";
             this.lblNoPerson.Size = new System.Drawing.Size(0, 13);
             this.lblNoPerson.TabIndex = 3;
@@ -81,7 +83,7 @@ namespace MyPhoneAccount
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
-            this.lblFullName.Location = new System.Drawing.Point(229, 44);
+            this.lblFullName.Location = new System.Drawing.Point(229, 66);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(35, 13);
             this.lblFullName.TabIndex = 4;
@@ -90,7 +92,7 @@ namespace MyPhoneAccount
             // lblCompanyName
             // 
             this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Location = new System.Drawing.Point(229, 73);
+            this.lblCompanyName.Location = new System.Drawing.Point(229, 95);
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(35, 13);
             this.lblCompanyName.TabIndex = 5;
@@ -99,7 +101,7 @@ namespace MyPhoneAccount
             // lblGSM
             // 
             this.lblGSM.AutoSize = true;
-            this.lblGSM.Location = new System.Drawing.Point(229, 100);
+            this.lblGSM.Location = new System.Drawing.Point(229, 122);
             this.lblGSM.Name = "lblGSM";
             this.lblGSM.Size = new System.Drawing.Size(35, 13);
             this.lblGSM.TabIndex = 6;
@@ -108,7 +110,7 @@ namespace MyPhoneAccount
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(229, 128);
+            this.lblPhone.Location = new System.Drawing.Point(229, 150);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(35, 13);
             this.lblPhone.TabIndex = 7;
@@ -117,17 +119,44 @@ namespace MyPhoneAccount
             // lblMail
             // 
             this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(229, 159);
+            this.lblMail.Location = new System.Drawing.Point(229, 181);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(35, 13);
             this.lblMail.TabIndex = 8;
             this.lblMail.Text = "label5";
             // 
+            // cmbSearchCategory
+            // 
+            this.cmbSearchCategory.FormattingEnabled = true;
+            this.cmbSearchCategory.Items.AddRange(new object[] {
+            "Ad Soyad",
+            "Şirket Adı",
+            "GSM Numarası",
+            "Sabit Tel.",
+            "E-Mail",
+            "Sıfırla"});
+            this.cmbSearchCategory.Location = new System.Drawing.Point(13, 7);
+            this.cmbSearchCategory.Name = "cmbSearchCategory";
+            this.cmbSearchCategory.Size = new System.Drawing.Size(107, 21);
+            this.cmbSearchCategory.TabIndex = 9;
+            this.cmbSearchCategory.Text = "Arama Kategorisi";
+            // 
+            // txtSearch
+            // 
+            this.txtSearch.Location = new System.Drawing.Point(127, 7);
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.Size = new System.Drawing.Size(280, 20);
+            this.txtSearch.TabIndex = 10;
+            this.txtSearch.Text = "Aranacak metin veya ifade";
+            this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 289);
+            this.ClientSize = new System.Drawing.Size(419, 311);
+            this.Controls.Add(this.txtSearch);
+            this.Controls.Add(this.cmbSearchCategory);
             this.Controls.Add(this.lblMail);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblGSM);
@@ -136,7 +165,7 @@ namespace MyPhoneAccount
             this.Controls.Add(this.lblNoPerson);
             this.Controls.Add(this.btnDeletePerson);
             this.Controls.Add(this.btnEkle);
-            this.Controls.Add(this.listView1);
+            this.Controls.Add(this.lstvResult);
             this.Name = "MainForm";
             this.Text = "Rehberim";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -147,7 +176,7 @@ namespace MyPhoneAccount
 
         #endregion
 
-        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.ListView lstvResult;
         private System.Windows.Forms.Button btnEkle;
         private System.Windows.Forms.Button btnDeletePerson;
         private System.Windows.Forms.Label lblNoPerson;
@@ -156,6 +185,8 @@ namespace MyPhoneAccount
         private System.Windows.Forms.Label lblGSM;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Label lblMail;
+        private System.Windows.Forms.ComboBox cmbSearchCategory;
+        private System.Windows.Forms.TextBox txtSearch;
     }
 }
 

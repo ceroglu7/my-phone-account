@@ -178,6 +178,7 @@ namespace MyPhoneAccount
             this.Controls.Add(this.radioBtnPerson);
             this.Name = "AddNewUserForm";
             this.Text = "Rehbere Ekle";
+            this.Load += new System.EventHandler(this.AddNewUserForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
