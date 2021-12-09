@@ -20,12 +20,11 @@ namespace MyPhoneAccount
         {
             InitializeComponent();
         }
-
+        int second = 15;
         private void QRCod_Load(object sender, EventArgs e)
         {
-           
-
-            
+            timer1.Interval = 1000;
+            timer1.Start();
         }
         public void SetData(PersonDto.Person person)
         {
@@ -47,6 +46,21 @@ namespace MyPhoneAccount
         private void pictureBox1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
+        {
+            if (second > 0)
+            {
+                second--;
+                string timerText = "Bu pencere " + second + " saniye sonra kapanacak";
+                lblTimer.Text = timerText;
+            }
+            else
+            {
+                timer1.Stop();
+                this.Hide();
+            }
         }
     }
 }
