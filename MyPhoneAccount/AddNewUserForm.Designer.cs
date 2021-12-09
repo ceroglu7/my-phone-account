@@ -73,9 +73,9 @@ namespace MyPhoneAccount
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Ad Soyad";
+            this.label1.Text = "Adı Soyadı";
             // 
             // txtNameSurname
             // 
@@ -136,9 +136,9 @@ namespace MyPhoneAccount
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(12, 185);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
+            this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 5;
-            this.label4.Text = "Telefon";
+            this.label4.Text = "Sabit Telefon";
             // 
             // label3
             // 
@@ -154,9 +154,9 @@ namespace MyPhoneAccount
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(13, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Ünvan";
+            this.label2.Text = "Firma Adı";
             // 
             // AddNewUserForm
             // 

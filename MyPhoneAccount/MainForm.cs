@@ -8,6 +8,8 @@ using Microsoft.Azure.Amqp.Framing;
 using System.Text.RegularExpressions;
 using System.Linq;
 using MyPhoneAccount;
+using QRCoder;
+using System.Drawing;
 
 namespace MyPhoneAccount
 {
@@ -15,6 +17,7 @@ namespace MyPhoneAccount
     {
         List<PersonDto.Person> _persons = new List<PersonDto.Person>();
         AddNewUserForm _addNewUserForm = new AddNewUserForm();
+        QRCod qrcode = new QRCod();
         public MainForm()
         {
             InitializeComponent();
@@ -43,6 +46,9 @@ namespace MyPhoneAccount
                 lblGSM.Text = null;
                 lblPhone.Text = null;
                 lblMail.Text = null;
+                btnCreateQR.Enabled = false;
+                btnDeletePerson.Enabled = false;
+
             }
             else
             {
@@ -56,10 +62,16 @@ namespace MyPhoneAccount
                 lblPhone.Text = "Sabit Telefon : " + _persons[item].Phone;
                 lblMail.Text = "E-Mail Adresi : " + _persons[item].Email;
                 lblNoPerson.Text = null;
+                btnCreateQR.Enabled = true;
+                btnDeletePerson.Enabled = true;
             }
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
+            btnCreateQR.Enabled = false;
+            btnDeletePerson.Enabled = false;
+
+
             lstvResult.Clear();
             lstvResult.View = View.Details;
             lstvResult.GridLines = true;
@@ -120,6 +132,8 @@ namespace MyPhoneAccount
                 lblPhone.Text = null;
                 lblMail.Text = null;
             }
+            btnCreateQR.Enabled = false;
+            btnDeletePerson.Enabled = false;
 
 
         }
@@ -133,7 +147,7 @@ namespace MyPhoneAccount
                 lstvResult.Items.Add(listViewItem);
             }
         }
-        
+
 
 
 
@@ -148,22 +162,22 @@ namespace MyPhoneAccount
             {
                 var searchResult = from item in _persons
                                    where item.Fullname.Contains(searchingText)
-                                   select new { item.Fullname };
+                                   select  item;
                 lstvResult.Items.Clear();
-                foreach (var result in searchResult)
+                foreach (var result in searchResult.ToList())
                 {
-                    lstvResult.Items.Add(Convert.ToString(result));
+                    lstvResult.Items.Add(Convert.ToString(result.Fullname));
                 }
             }
             else if (cmbSearchCategory.SelectedItem == "Şirket Adı")
             {
                 var searchResult = from item in _persons
                                    where item.CompanyName.Contains(searchingText)
-                                   select new { item.CompanyName };
+                                   select item;
                 lstvResult.Items.Clear();
-                foreach (var result in searchResult)
+                foreach (var result in searchResult.ToList())
                 {
-                    lstvResult.Items.Add(Convert.ToString(result));
+                    lstvResult.Items.Add(Convert.ToString(result.CompanyName));
                 }
             }
             else if (cmbSearchCategory.SelectedItem == "GSM Numarası")
@@ -201,19 +215,34 @@ namespace MyPhoneAccount
             }
             else
                 RefreshListView();
-            }
-        
         }
-
-    }
-    public class PersonDtoValidator : AbstractValidator<PersonDto.Person>
-    {
-        public PersonDtoValidator()
+        public void btnCreateQR_Click(object sender, EventArgs e)
         {
-            RuleFor(c => c.Email).EmailAddress().WithMessage("Mail bilgisi hatalı girildi").When(i => !string.IsNullOrEmpty(i.Email));
-            RuleFor(c => c.Fullname).Length(3, 20).NotEmpty().NotNull().WithMessage("Ad Soyad bilgisi hatalı");
-            RuleFor(c => c.GSM).Length(11).NotNull().NotEmpty().WithMessage("GSM Hatalı");
+            if (lstvResult.SelectedItems.Count > 0)
+            {
+                var item = lstvResult.SelectedItems[0].Index;
+                var selectedPerson = _persons[item];
+                qrcode.SetData(selectedPerson);
+                qrcode.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Seçilmedi");
+            }
         }
-
-
     }
+
+}
+public class PersonDtoValidator : AbstractValidator<PersonDto.Person>
+{
+    public PersonDtoValidator()
+    {
+        RuleFor(c => c.Email).EmailAddress().WithMessage("Mail bilgisi hatalı girildi").When(i => !string.IsNullOrEmpty(i.Email));
+        RuleFor(c => c.Fullname).Length(3, 20).NotEmpty().NotNull().WithMessage("Ad Soyad bilgisi hatalı");
+        RuleFor(c => c.GSM).Length(11).NotNull().NotEmpty().WithMessage("GSM Hatalı");
+        RuleFor(c => c.CompanyName).Length(0, 15).WithMessage("Şirket adı 15 karakter olmalı max");
+        RuleFor(c => c.Phone).Length(11).NotNull().NotEmpty().WithMessage("Sabit Telefon Bilgisi Hatalı");
+    }
+
+
+}

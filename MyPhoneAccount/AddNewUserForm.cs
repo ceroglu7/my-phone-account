@@ -33,7 +33,7 @@ namespace MyPhoneAccount
             txtMail.Enabled = true;
             txtGSM.Enabled = true;
             txtCompany.Enabled = false;
-            txtPhone.Enabled = false;
+            txtPhone.Enabled = true;
 
 
         }
@@ -44,8 +44,8 @@ namespace MyPhoneAccount
             txtCompany.Enabled = true;
             txtPhone.Enabled = true;
             txtMail.Enabled = true;
-            txtNameSurname.Enabled = false;
-            txtGSM.Enabled = false;
+            txtNameSurname.Enabled = true;
+            txtGSM.Enabled = true;
 
         }
 
