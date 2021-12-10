@@ -21,8 +21,9 @@ namespace MyPhoneAccount
             InitializeComponent();
         }
         int second = 15;
-        private void QRCod_Load(object sender, EventArgs e)
+        public void QRCod_Load(object sender, EventArgs e)
         {
+
             timer1.Interval = 1000;
             timer1.Start();
         }
@@ -50,6 +51,7 @@ namespace MyPhoneAccount
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
+            
             if (second > 0)
             {
                 second--;
@@ -59,8 +61,10 @@ namespace MyPhoneAccount
             else
             {
                 timer1.Stop();
-                this.Hide();
+                this.Close();
+                second = 15;
             }
         }
+        
     }
 }
