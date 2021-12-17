@@ -80,6 +80,7 @@ namespace MyPhoneAccount
             this.Controls.Add(this.txtSendingAdress);
             this.Name = "Mail";
             this.Text = "Mail";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mail_FormClosed);
             this.Load += new System.EventHandler(this.Mail_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

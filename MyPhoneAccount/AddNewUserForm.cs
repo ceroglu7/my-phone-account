@@ -1,7 +1,9 @@
 ﻿using FluentValidation.Results;
 using Newtonsoft.Json;
 using System;
+using System.Globalization;
 using System.IO;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace MyPhoneAccount
@@ -9,7 +11,7 @@ namespace MyPhoneAccount
     public partial class AddNewUserForm : Form
     {
         public PersonDto.Person ReturnPerson { get; set; }
-
+        CultureInfo culture = Thread.CurrentThread.CurrentCulture;
         public AddNewUserForm()
         {
             InitializeComponent();
@@ -49,6 +51,7 @@ namespace MyPhoneAccount
 
         }
 
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
 
@@ -56,10 +59,10 @@ namespace MyPhoneAccount
             {
                 PersonDto.Person person = new PersonDto.Person
                 {
-                    Fullname = txtNameSurname.Text,
-                    GSM = txtGSM.Text,
-                    Email = txtMail.Text,
-                    Phone = txtPhone.Text
+                    Fullname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(txtNameSurname.Text),
+                    GSM = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(txtGSM.Text),
+                    Email = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(txtMail.Text),
+                    Phone = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(txtPhone.Text)
                 };
 
                 if (radioBtnCompany.Checked)
@@ -76,10 +79,10 @@ namespace MyPhoneAccount
                     {
                         errorMessage += $"{error}  \n";
                     }
-                    MessageBox.Show(errorMessage,"Hatalar",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBox.Show(errorMessage, "Hatalar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                
+
 
 
                 //Validation
@@ -87,14 +90,14 @@ namespace MyPhoneAccount
                 ReturnPerson = person;
 
                 this.DialogResult = DialogResult.OK;
-                
+
                 this.Hide();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            
+
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -104,9 +107,9 @@ namespace MyPhoneAccount
                 {
                     PersonDto.Person person = new PersonDto.Person
                     {
-                        Fullname = txtNameSurname.Text,
+                        Fullname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(txtNameSurname.Text),
                         GSM = txtGSM.Text,
-                        Email = txtMail.Text,
+                        Email =txtMail.Text,
                         Phone = txtPhone.Text
                     };
 
@@ -125,7 +128,7 @@ namespace MyPhoneAccount
                             errorMessage += $"{error}  \n";
                         }
                         MessageBox.Show(errorMessage, "Hatalar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        
+
                     }
 
 

@@ -12,6 +12,7 @@ namespace MyPhoneAccount
 {
     public partial class Mail : Form
     {
+        
         public Mail()
         {
             InitializeComponent();
@@ -58,6 +59,8 @@ namespace MyPhoneAccount
                 {
                     smtp.Send(ePosta);
                     this.Hide();
+                    MainForm mainform = new MainForm();
+                    mainform.Show();
                 }
                 catch (SmtpException ex)
                 {
@@ -108,6 +111,8 @@ namespace MyPhoneAccount
                     {
                         smtp.Send(ePosta);
                         this.Hide();
+                        MainForm mainform = new MainForm();
+                        mainform.Show();
                     }
                     catch (SmtpException ex)
                     {
@@ -125,6 +130,12 @@ namespace MyPhoneAccount
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
+        }
+
+        private void Mail_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            MainForm mainform = new MainForm();
+            mainform.Show();
         }
     }
 }

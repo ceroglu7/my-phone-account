@@ -42,7 +42,7 @@ namespace MyPhoneAccount
         {
             if (lstvResult.SelectedItems.Count == 0)
             {
-                lblNoPerson.Text = "Kayıt Seçilmeli";
+                lblNoPerson1.Text = "Kayıt Seçilmeli";
                 lblFullName.Text = null;
                 lblCompanyName.Text = null;
                 lblGSM.Text = null;
@@ -64,7 +64,7 @@ namespace MyPhoneAccount
                 lblGSM.Text = "GSM No : " + _persons[item].GSM;
                 lblPhone.Text = "Sabit Telefon : " + _persons[item].Phone;
                 lblMail.Text = "E-Mail Adresi : " + _persons[item].Email;
-                lblNoPerson.Text = null;
+                lblNoPerson1.Text = null;
                 btnCreateQR.Enabled = true;
                 btnDeletePerson.Enabled = true;
                 btnMail.Enabled = true;
@@ -80,7 +80,7 @@ namespace MyPhoneAccount
             lstvResult.GridLines = true;
             lstvResult.FullRowSelect = true;
             lstvResult.Columns.Add("Kişiler");
-            lblNoPerson.Text = "Kayıt Seçilmeli";
+            lblNoPerson1.Text = "Kayıt Seçilmeli";
             lblFullName.Text = null;
             lblCompanyName.Text = null;
             lblGSM.Text = null;
@@ -117,7 +117,7 @@ namespace MyPhoneAccount
                 _persons.RemoveAt(item);
                 RefreshListView();
                 Serialize();
-                lblNoPerson.Text = "Kayıt Seçilmeli";
+                lblNoPerson1.Text = "Kayıt Seçilmeli";
                 lblFullName.Text = null;
                 lblCompanyName.Text = null;
                 lblGSM.Text = null;
@@ -232,7 +232,15 @@ namespace MyPhoneAccount
                 MessageBox.Show("Seçilmedi");
             }
         }
-        
+        public void selecteditem()
+        {
+            var item = lstvResult.SelectedItems[0].Index;
+            var selectedPerson = _persons[item];
+            string GSM = selectedPerson.GSM;
+            string FULLNAME = selectedPerson.Fullname;
+            string COMPANY = selectedPerson.CompanyName;
+            string EMAIL = selectedPerson.Email;
+        }
 
         public void btnMail_Click(object sender, EventArgs e)
         {
@@ -246,6 +254,7 @@ namespace MyPhoneAccount
                 mail.companyName = selectedPerson.CompanyName;
                 mail.email = selectedPerson.Email;
                 mail.Show();
+                this.Close();
             }
             else
             {

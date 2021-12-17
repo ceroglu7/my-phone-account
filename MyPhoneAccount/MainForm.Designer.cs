@@ -32,7 +32,7 @@ namespace MyPhoneAccount
             this.lstvResult = new System.Windows.Forms.ListView();
             this.btnEkle = new System.Windows.Forms.Button();
             this.btnDeletePerson = new System.Windows.Forms.Button();
-            this.lblNoPerson = new System.Windows.Forms.Label();
+            this.lblNoPerson1 = new System.Windows.Forms.Label();
             this.lblFullName = new System.Windows.Forms.Label();
             this.lblCompanyName = new System.Windows.Forms.Label();
             this.lblGSM = new System.Windows.Forms.Label();
@@ -47,6 +47,7 @@ namespace MyPhoneAccount
             // lstvResult
             // 
             this.lstvResult.HideSelection = false;
+            this.lstvResult.HoverSelection = true;
             this.lstvResult.Location = new System.Drawing.Point(12, 34);
             this.lstvResult.Name = "lstvResult";
             this.lstvResult.Size = new System.Drawing.Size(197, 265);
@@ -74,13 +75,13 @@ namespace MyPhoneAccount
             this.btnDeletePerson.UseVisualStyleBackColor = true;
             this.btnDeletePerson.Click += new System.EventHandler(this.btnDeletePerson_Click);
             // 
-            // lblNoPerson
+            // lblNoPerson1
             // 
-            this.lblNoPerson.AutoSize = true;
-            this.lblNoPerson.Location = new System.Drawing.Point(226, 113);
-            this.lblNoPerson.Name = "lblNoPerson";
-            this.lblNoPerson.Size = new System.Drawing.Size(0, 13);
-            this.lblNoPerson.TabIndex = 3;
+            this.lblNoPerson1.AutoSize = true;
+            this.lblNoPerson1.Location = new System.Drawing.Point(226, 113);
+            this.lblNoPerson1.Name = "lblNoPerson1";
+            this.lblNoPerson1.Size = new System.Drawing.Size(0, 13);
+            this.lblNoPerson1.TabIndex = 3;
             // 
             // lblFullName
             // 
@@ -185,7 +186,7 @@ namespace MyPhoneAccount
             this.Controls.Add(this.lblGSM);
             this.Controls.Add(this.lblCompanyName);
             this.Controls.Add(this.lblFullName);
-            this.Controls.Add(this.lblNoPerson);
+            this.Controls.Add(this.lblNoPerson1);
             this.Controls.Add(this.btnDeletePerson);
             this.Controls.Add(this.btnEkle);
             this.Controls.Add(this.lstvResult);
@@ -202,7 +203,7 @@ namespace MyPhoneAccount
         private System.Windows.Forms.ListView lstvResult;
         private System.Windows.Forms.Button btnEkle;
         private System.Windows.Forms.Button btnDeletePerson;
-        private System.Windows.Forms.Label lblNoPerson;
+        private System.Windows.Forms.Label lblNoPerson1;
         private System.Windows.Forms.Label lblFullName;
         private System.Windows.Forms.Label lblCompanyName;
         private System.Windows.Forms.Label lblGSM;
