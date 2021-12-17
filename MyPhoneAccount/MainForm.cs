@@ -10,6 +10,8 @@ using System.Linq;
 using MyPhoneAccount;
 using QRCoder;
 using System.Drawing;
+using System.Net.Mail;
+using System.Net;
 
 namespace MyPhoneAccount
 {
@@ -18,6 +20,8 @@ namespace MyPhoneAccount
         List<PersonDto.Person> _persons = new List<PersonDto.Person>();
         AddNewUserForm _addNewUserForm = new AddNewUserForm();
         QRCod qrcode = new QRCod();
+        Mail mail = new Mail();
+        string path = "persons.json";
         public MainForm()
         {
             InitializeComponent();
@@ -30,9 +34,7 @@ namespace MyPhoneAccount
             {
                 _persons.Add(_addNewUserForm.ReturnPerson);
             }
-            string personJson = JsonConvert.SerializeObject(_persons);
-            string path = "persons.json";
-            File.WriteAllText(path, personJson);
+            Serialize();
             RefreshListView();
         }
 
@@ -48,14 +50,15 @@ namespace MyPhoneAccount
                 lblMail.Text = null;
                 btnCreateQR.Enabled = false;
                 btnDeletePerson.Enabled = false;
+                btnMail.Enabled = false;
+
+
 
             }
             else
             {
                 var item = lstvResult.SelectedItems[0].Index;
-                string path = @"persons.json";
-                string PersonText = File.ReadAllText(path);
-                _persons = JsonConvert.DeserializeObject<List<PersonDto.Person>>(PersonText);
+                Deserialize();
                 lblFullName.Text = "Ad Soyad : " + _persons[item].Fullname;
                 lblCompanyName.Text = "Firma Adı : " + _persons[item].CompanyName;
                 lblGSM.Text = "GSM No : " + _persons[item].GSM;
@@ -64,21 +67,19 @@ namespace MyPhoneAccount
                 lblNoPerson.Text = null;
                 btnCreateQR.Enabled = true;
                 btnDeletePerson.Enabled = true;
+                btnMail.Enabled = true;
             }
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
             btnCreateQR.Enabled = false;
             btnDeletePerson.Enabled = false;
-
-
+            btnMail.Enabled = false;
             lstvResult.Clear();
             lstvResult.View = View.Details;
             lstvResult.GridLines = true;
             lstvResult.FullRowSelect = true;
-            lstvResult.Columns.Add("Ad Soyad");
-            lstvResult.Columns.Add("GSM");
-
+            lstvResult.Columns.Add("Kişiler");
             lblNoPerson.Text = "Kayıt Seçilmeli";
             lblFullName.Text = null;
             lblCompanyName.Text = null;
@@ -92,12 +93,7 @@ namespace MyPhoneAccount
             {
                 lstvResult.Items.Add("Kişi yada Firma Eklenmemiş");
             }
-            string PersonText = File.ReadAllText(path);
-            _persons = JsonConvert.DeserializeObject<List<PersonDto.Person>>(PersonText);
-
-
-
-
+            Deserialize();
             if (_persons == null)
             {
                 _persons = new List<PersonDto.Person>();
@@ -110,21 +106,17 @@ namespace MyPhoneAccount
                     lstvResult.Items.Add(item.Fullname);
                 }
             }
-
         }
+        
 
         private void btnDeletePerson_Click(object sender, EventArgs e)
         {
             if (lstvResult.SelectedItems.Count > 0)
             {
                 var item = lstvResult.SelectedItems[0].Index;
-                //rest of your logic
                 _persons.RemoveAt(item);
-                //_persons.Remove(_persons[item]);
                 RefreshListView();
-                string personJson = JsonConvert.SerializeObject(_persons);
-                string path = "persons.json";
-                File.WriteAllText(path, personJson);
+                Serialize();
                 lblNoPerson.Text = "Kayıt Seçilmeli";
                 lblFullName.Text = null;
                 lblCompanyName.Text = null;
@@ -134,9 +126,10 @@ namespace MyPhoneAccount
             }
             btnCreateQR.Enabled = false;
             btnDeletePerson.Enabled = false;
-
-
+            btnMail.Enabled = false;
         }
+
+
         private void RefreshListView()
         {
             lstvResult.Items.Clear();
@@ -149,20 +142,29 @@ namespace MyPhoneAccount
         }
 
 
+        public void Deserialize()
+        {
+            string PersonText = File.ReadAllText(path);
+            _persons = JsonConvert.DeserializeObject<List<PersonDto.Person>>(PersonText);
+        }
+
+
+        public void Serialize()
+        {
+            string personJson = JsonConvert.SerializeObject(_persons);
+            File.WriteAllText(path, personJson);
+        }
 
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            List<PersonDto.Person> _persons = new List<PersonDto.Person>();
-            string path = "persons.json";
-            string PersonText = File.ReadAllText(path);
-            _persons = JsonConvert.DeserializeObject<List<PersonDto.Person>>(PersonText);
-            string searchingText = txtSearch.Text;
+            Deserialize();
+            string searchingText = txtSearch.Text.ToUpper();
             if (cmbSearchCategory.SelectedItem == "Ad Soyad")
             {
                 var searchResult = from item in _persons
-                                   where item.Fullname.Contains(searchingText)
-                                   select  item;
+                                   where item.Fullname.ToUpper().Contains(searchingText)
+                                   select item;
                 lstvResult.Items.Clear();
                 foreach (var result in searchResult.ToList())
                 {
@@ -183,7 +185,7 @@ namespace MyPhoneAccount
             else if (cmbSearchCategory.SelectedItem == "GSM Numarası")
             {
                 var searchResult = from item in _persons
-                                   where item.GSM.Contains(searchingText)
+                                   where item.GSM.ToUpper().Contains(searchingText)
                                    select new { item.GSM };
                 lstvResult.Items.Clear();
                 foreach (var result in searchResult)
@@ -194,7 +196,7 @@ namespace MyPhoneAccount
             else if (cmbSearchCategory.SelectedItem == "Sabit Tel.")
             {
                 var searchResult = from item in _persons
-                                   where item.Phone.Contains(searchingText)
+                                   where item.Phone.ToUpper().Contains(searchingText)
                                    select new { item.Phone };
                 lstvResult.Items.Clear();
                 foreach (var result in searchResult)
@@ -205,7 +207,7 @@ namespace MyPhoneAccount
             else if (cmbSearchCategory.SelectedItem == "E-Mail")
             {
                 var searchResult = from item in _persons
-                                   where item.Email.Contains(searchingText)
+                                   where item.Email.ToUpper().Contains(searchingText)
                                    select new { item.Email };
                 lstvResult.Items.Clear();
                 foreach (var result in searchResult)
@@ -230,6 +232,27 @@ namespace MyPhoneAccount
                 MessageBox.Show("Seçilmedi");
             }
         }
+        
+
+        public void btnMail_Click(object sender, EventArgs e)
+        {
+ 
+            if (lstvResult.SelectedItems.Count > 0)
+            {
+                var item = lstvResult.SelectedItems[0].Index;
+                var selectedPerson = _persons[item];
+                mail.gsm = selectedPerson.GSM;
+                mail.fullName = selectedPerson.Fullname;
+                mail.companyName = selectedPerson.CompanyName;
+                mail.email = selectedPerson.Email;
+                mail.Show();
+            }
+            else
+            {
+                MessageBox.Show("aaa");
+            }
+        }
+
     }
 
 }

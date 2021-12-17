@@ -64,6 +64,8 @@ namespace MyPhoneAccount
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.pictureBox1);
             this.Name = "QRCod";
+            this.Text = "QR Kod Oluşturucu";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.QRCod_FormClosed);
             this.Load += new System.EventHandler(this.QRCod_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

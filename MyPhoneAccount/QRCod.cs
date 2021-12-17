@@ -51,20 +51,25 @@ namespace MyPhoneAccount
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {
+
             
+
             if (second > 0)
             {
-                second--;
-                string timerText = "Bu pencere " + second + " saniye sonra kapanacak";
-                lblTimer.Text = timerText;
+                lblTimer.Text = Convert.ToString(second--) + " saniye sonra kapanacak";
             }
             else
             {
                 timer1.Stop();
                 this.Close();
-                second = 15;
             }
         }
-        
+
+        private void QRCod_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            second = 15;
+            timer1.Stop();
+            lblTimer.Text = Convert.ToString(second--) + " saniye sonra kapanacak";
+        }
     }
 }

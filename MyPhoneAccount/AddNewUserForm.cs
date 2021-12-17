@@ -96,7 +96,56 @@ namespace MyPhoneAccount
             }
             
         }
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == Keys.Enter)
+            {
+                try
+                {
+                    PersonDto.Person person = new PersonDto.Person
+                    {
+                        Fullname = txtNameSurname.Text,
+                        GSM = txtGSM.Text,
+                        Email = txtMail.Text,
+                        Phone = txtPhone.Text
+                    };
 
+                    if (radioBtnCompany.Checked)
+                        person.CompanyName = txtCompany.Text;
+
+                    //Validation
+
+                    PersonDtoValidator validation = new PersonDtoValidator();
+                    ValidationResult result = validation.Validate(person);
+                    if (!result.IsValid)
+                    {
+                        string errorMessage = "";
+                        foreach (var error in result.Errors)
+                        {
+                            errorMessage += $"{error}  \n";
+                        }
+                        MessageBox.Show(errorMessage, "Hatalar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        
+                    }
+
+
+
+                    //Validation
+
+                    ReturnPerson = person;
+
+                    this.DialogResult = DialogResult.OK;
+
+                    this.Hide();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+
+            return base.ProcessCmdKey(ref msg, keyData);
+        }
         private void AddNewUserForm_Load(object sender, EventArgs e)
         {
 

@@ -41,6 +41,7 @@ namespace MyPhoneAccount
             this.cmbSearchCategory = new System.Windows.Forms.ComboBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnCreateQR = new System.Windows.Forms.Button();
+            this.btnMail = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lstvResult
@@ -154,17 +155,28 @@ namespace MyPhoneAccount
             // 
             this.btnCreateQR.Location = new System.Drawing.Point(215, 214);
             this.btnCreateQR.Name = "btnCreateQR";
-            this.btnCreateQR.Size = new System.Drawing.Size(191, 23);
+            this.btnCreateQR.Size = new System.Drawing.Size(95, 23);
             this.btnCreateQR.TabIndex = 11;
             this.btnCreateQR.Text = "QR Kod Oluştur";
             this.btnCreateQR.UseVisualStyleBackColor = true;
             this.btnCreateQR.Click += new System.EventHandler(this.btnCreateQR_Click);
+            // 
+            // btnMail
+            // 
+            this.btnMail.Location = new System.Drawing.Point(312, 214);
+            this.btnMail.Name = "btnMail";
+            this.btnMail.Size = new System.Drawing.Size(95, 23);
+            this.btnMail.TabIndex = 12;
+            this.btnMail.Text = "Mail Gönder";
+            this.btnMail.UseVisualStyleBackColor = true;
+            this.btnMail.Click += new System.EventHandler(this.btnMail_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 311);
+            this.Controls.Add(this.btnMail);
             this.Controls.Add(this.btnCreateQR);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.cmbSearchCategory);
@@ -199,6 +211,7 @@ namespace MyPhoneAccount
         private System.Windows.Forms.ComboBox cmbSearchCategory;
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Button btnCreateQR;
+        private System.Windows.Forms.Button btnMail;
     }
 }
 
