@@ -44,10 +44,7 @@ namespace MyPhoneAccount
             pictureBox1.Image = qrCodeImage;
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-        }
+        
 
         private void timer1_Tick_1(object sender, EventArgs e)
         {

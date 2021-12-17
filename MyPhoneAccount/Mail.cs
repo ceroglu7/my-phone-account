@@ -53,7 +53,7 @@ namespace MyPhoneAccount
                 smtp.EnableSsl = true;
                 object userState = ePosta;
                 bool kontrol = true;
-
+                
                 try
                 {
                     smtp.Send(ePosta);

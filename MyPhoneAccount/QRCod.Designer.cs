@@ -44,7 +44,6 @@ namespace MyPhoneAccount
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // timer1
             // 
@@ -75,8 +74,6 @@ namespace MyPhoneAccount
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pctQR;
-        private System.Windows.Forms.Label lblReadIt;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label lblTimer;
