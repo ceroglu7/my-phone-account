@@ -12,6 +12,7 @@ namespace MyPhoneAccount
             public string GSM { get; set; }
             public string Phone { get; set; }
             public string Email { get; set; }
+            public bool IsCompany { get; set; }
         }
     }
 }

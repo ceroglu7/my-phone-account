@@ -87,16 +87,22 @@ namespace MyPhoneAccount
             // txtPhone
             // 
             this.txtPhone.Location = new System.Drawing.Point(16, 201);
+            this.txtPhone.MaxLength = 11;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(248, 20);
             this.txtPhone.TabIndex = 7;
+            this.txtPhone.TextChanged += new System.EventHandler(this.txtPhone_TextChanged);
+            this.txtPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPhone_KeyPress);
             // 
             // txtGSM
             // 
             this.txtGSM.Location = new System.Drawing.Point(16, 152);
+            this.txtGSM.MaxLength = 11;
             this.txtGSM.Name = "txtGSM";
             this.txtGSM.Size = new System.Drawing.Size(248, 20);
             this.txtGSM.TabIndex = 8;
+            this.txtGSM.TextChanged += new System.EventHandler(this.txtGSM_TextChanged);
+            this.txtGSM.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGSM_KeyPress);
             // 
             // txtCompany
             // 

@@ -47,7 +47,6 @@ namespace MyPhoneAccount
             // lstvResult
             // 
             this.lstvResult.HideSelection = false;
-            this.lstvResult.HoverSelection = true;
             this.lstvResult.Location = new System.Drawing.Point(12, 34);
             this.lstvResult.Name = "lstvResult";
             this.lstvResult.Size = new System.Drawing.Size(197, 265);
@@ -192,6 +191,7 @@ namespace MyPhoneAccount
             this.Controls.Add(this.lstvResult);
             this.Name = "MainForm";
             this.Text = "Rehberim";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
