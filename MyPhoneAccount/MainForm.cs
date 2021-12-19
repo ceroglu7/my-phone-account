@@ -253,8 +253,7 @@ namespace MyPhoneAccount
                 mail.fullName = selectedPerson.Fullname;
                 mail.companyName = selectedPerson.CompanyName;
                 mail.email = selectedPerson.Email;
-                mail.Show();
-                this.Close();
+                mail.ShowDialog();
             }
             else
             {
@@ -262,19 +261,10 @@ namespace MyPhoneAccount
             }
         }
 
+        private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
-
-}
-public class PersonDtoValidator : AbstractValidator<PersonDto.Person>
-{
-    public PersonDtoValidator()
-    {
-        RuleFor(c => c.Email).EmailAddress().WithMessage("Mail bilgisi hatalı girildi").When(i => !string.IsNullOrEmpty(i.Email));
-        RuleFor(c => c.Fullname).Length(3, 20).NotEmpty().NotNull().WithMessage("Ad Soyad bilgisi hatalı");
-        RuleFor(c => c.GSM).Length(11).NotNull().NotEmpty().WithMessage("GSM Hatalı");
-        RuleFor(c => c.CompanyName).Length(0, 15).WithMessage("Şirket adı 15 karakter olmalı max");
-        RuleFor(c => c.Phone).Length(11).NotNull().NotEmpty().WithMessage("Sabit Telefon Bilgisi Hatalı");
-    }
-
 
 }

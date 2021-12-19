@@ -59,8 +59,7 @@ namespace MyPhoneAccount
                 {
                     smtp.Send(ePosta);
                     this.Hide();
-                    MainForm mainform = new MainForm();
-                    mainform.Show();
+                    
                 }
                 catch (SmtpException ex)
                 {
@@ -111,8 +110,6 @@ namespace MyPhoneAccount
                     {
                         smtp.Send(ePosta);
                         this.Hide();
-                        MainForm mainform = new MainForm();
-                        mainform.Show();
                     }
                     catch (SmtpException ex)
                     {
@@ -134,8 +131,7 @@ namespace MyPhoneAccount
 
         private void Mail_FormClosed(object sender, FormClosedEventArgs e)
         {
-            MainForm mainform = new MainForm();
-            mainform.Show();
+            this.Hide();
         }
     }
 }

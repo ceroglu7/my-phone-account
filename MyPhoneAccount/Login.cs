@@ -56,7 +56,7 @@ namespace MyPhoneAccount
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            txtPassword.PasswordChar = '*';
         }
     }
 }
