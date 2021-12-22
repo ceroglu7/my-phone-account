@@ -1,7 +1,7 @@
 ﻿
 namespace MyPhoneAccount
 {
-    partial class Mail
+    partial class MailForm
     {
         /// <summary>
         /// Required designer variable.

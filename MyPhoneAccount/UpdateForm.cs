@@ -10,50 +10,30 @@ using System.Windows.Forms;
 
 namespace MyPhoneAccount
 {
-    public partial class AddNewUserForm : Form
+    public partial class UpdateForm : Form
     {
         public PersonDto.Person ReturnPerson { get; set; }
         CultureInfo culture = Thread.CurrentThread.CurrentCulture;
-
-        public AddNewUserForm()
+        public UpdateForm()
         {
             InitializeComponent();
         }
+        public string fullName;
+        public string companyName;
+        public string gsm;
+        public string email;
+        public string phone;
 
-        public void Clear()
+        private void Update_Load(object sender, EventArgs e)
         {
-            ReturnPerson = null;
-
-            txtNameSurname.Text = string.Empty;
-            txtGSM.Text = string.Empty;
-            txtMail.Text = string.Empty;
-            txtPhone.Text = string.Empty;
-            txtCompany.Text = string.Empty;
+            txtNameSurname.Text = fullName;
+            txtGSM.Text = gsm;
+            txtMail.Text = email;
+            txtPhone.Text=phone;
+            txtCompany.Text = companyName;
+            
         }
-
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-
-            txtNameSurname.Enabled = true;
-            txtMail.Enabled = true;
-            txtGSM.Enabled = true;
-            txtCompany.Enabled = false;
-            txtPhone.Enabled = true;
-
-
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-            txtCompany.Enabled = true;
-            txtPhone.Enabled = true;
-            txtMail.Enabled = true;
-            txtNameSurname.Enabled = true;
-            txtGSM.Enabled = true;
-
-        }
-        public void Add()
+        public void update()
         {
             try
             {
@@ -64,16 +44,8 @@ namespace MyPhoneAccount
                     Email = txtMail.Text,
                     Phone = txtPhone.Text,
                     IsCompany = false,
-                    CompanyName=String.Empty
+                    CompanyName = String.Empty
                 };
-
-                if (radioBtnCompany.Checked)
-                {
-                    person.CompanyName = txtCompany.Text;
-                    person.IsCompany = true;
-                }
-                //Validation
-
                 PersonDtoValidator validation = new PersonDtoValidator();
                 ValidationResult result = validation.Validate(person);
                 if (!result.IsValid)
@@ -102,27 +74,19 @@ namespace MyPhoneAccount
                 MessageBox.Show(ex.Message);
             }
         }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
-            Add();
-
+            update();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Enter)
             {
-                Add();
+                update();
             }
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        private void AddNewUserForm_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         
     }
 }

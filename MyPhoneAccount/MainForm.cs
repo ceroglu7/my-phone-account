@@ -18,9 +18,11 @@ namespace MyPhoneAccount
     public partial class MainForm : Form
     {
         List<PersonDto.Person> _persons = new List<PersonDto.Person>();
+        List<PersonDto.Person> _persons_reserved = new List<PersonDto.Person>();
         AddNewUserForm _addNewUserForm = new AddNewUserForm();
-        QRCod qrcode = new QRCod();
-        Mail mail = new Mail();
+        UpdateForm update = new UpdateForm();
+        QRCodeForm qrcode = new QRCodeForm();
+        MailForm mail = new MailForm();
         string path = "persons.json";
         public MainForm()
         {
@@ -34,6 +36,33 @@ namespace MyPhoneAccount
             {
                 _persons.Add(_addNewUserForm.ReturnPerson);
             }
+            Serialize();
+            RefreshListView();
+        }
+        
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+
+            var item = lstvResult.SelectedItems[0].Index;
+            var selectedPerson = _persons[item];
+            update.gsm = selectedPerson.GSM;
+            update.fullName = selectedPerson.Fullname;
+            update.companyName = selectedPerson.CompanyName;
+            update.email = selectedPerson.Email;
+            update.phone = selectedPerson.Phone;
+
+            var result = update.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                _persons[item].Fullname = update.ReturnPerson.Fullname;
+                _persons[item].GSM = update.ReturnPerson.GSM;
+                _persons[item].CompanyName = update.ReturnPerson.CompanyName;
+                _persons[item].Phone = update.ReturnPerson.Phone;
+                _persons[item].Email = update.ReturnPerson.Email;
+                //_persons.RemoveAt(item);
+                //_persons.Add(update.ReturnPerson);
+            }
+
             Serialize();
             RefreshListView();
         }
@@ -51,6 +80,7 @@ namespace MyPhoneAccount
                 btnCreateQR.Enabled = false;
                 btnDeletePerson.Enabled = false;
                 btnMail.Enabled = false;
+                btnUpdate.Enabled = false;
 
 
 
@@ -68,6 +98,7 @@ namespace MyPhoneAccount
                 btnCreateQR.Enabled = true;
                 btnDeletePerson.Enabled = true;
                 btnMail.Enabled = true;
+                btnUpdate.Enabled = true;
             }
         }
         private void MainForm_Load(object sender, EventArgs e)
@@ -75,6 +106,7 @@ namespace MyPhoneAccount
             btnCreateQR.Enabled = false;
             btnDeletePerson.Enabled = false;
             btnMail.Enabled = false;
+            btnUpdate.Enabled = false;
             lstvResult.Clear();
             lstvResult.View = View.Details;
             lstvResult.GridLines = true;
@@ -107,10 +139,11 @@ namespace MyPhoneAccount
                 }
             }
         }
-        
+
 
         private void btnDeletePerson_Click(object sender, EventArgs e)
         {
+
             if (lstvResult.SelectedItems.Count > 0)
             {
                 var item = lstvResult.SelectedItems[0].Index;
@@ -127,6 +160,7 @@ namespace MyPhoneAccount
             btnCreateQR.Enabled = false;
             btnDeletePerson.Enabled = false;
             btnMail.Enabled = false;
+            btnUpdate.Enabled = false;
         }
 
 
@@ -135,7 +169,7 @@ namespace MyPhoneAccount
             lstvResult.Items.Clear();
             foreach (var item in _persons)
             {
-                string[] row = { item.Fullname, item.GSM };
+                string[] row = { item.Fullname};
                 var listViewItem = new ListViewItem(row);
                 lstvResult.Items.Add(listViewItem);
             }
@@ -146,6 +180,8 @@ namespace MyPhoneAccount
         {
             string PersonText = File.ReadAllText(path);
             _persons = JsonConvert.DeserializeObject<List<PersonDto.Person>>(PersonText);
+            
+               
         }
 
 
@@ -244,7 +280,7 @@ namespace MyPhoneAccount
 
         public void btnMail_Click(object sender, EventArgs e)
         {
- 
+
             if (lstvResult.SelectedItems.Count > 0)
             {
                 var item = lstvResult.SelectedItems[0].Index;
@@ -265,6 +301,8 @@ namespace MyPhoneAccount
         {
             Application.Exit();
         }
+
+
     }
 
 }

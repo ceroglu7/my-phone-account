@@ -13,10 +13,10 @@ using System.Windows.Forms;
 
 namespace MyPhoneAccount
 {
-    public partial class QRCod : Form
+    public partial class QRCodeForm : Form
     {
 
-        public QRCod()
+        public QRCodeForm()
         {
             InitializeComponent();
         }
@@ -29,13 +29,13 @@ namespace MyPhoneAccount
         }
         public void SetData(PersonDto.Person person)
         {
-            string str = $"BEGIN:VCARD" +
-                                $"VERSION: 4.0" +
-                                $"FN: " + person.Fullname +
-                                $"ORG: " +person.CompanyName +
-                                $"TEL; TYPE = work,voice; VALUE = " + person.Phone +
-                                $"TEL; TYPE = home,voice; VALUE = " + person.GSM +
-                                $"EMAIL: " + person.Email +
+            string str = $"BEGIN:VCARD\n" +
+                                $"VERSION: 4.0\n" +
+                                $"FN: " + person.Fullname+"\n" +
+                                $"ORG: " +person.CompanyName + "\n" +
+                                $"TEL; TYPE = work,voice; VALUE = " + person.Phone + "\n" +
+                                $"TEL; TYPE = home,voice; VALUE = " + person.GSM + "\n" +
+                                $"EMAIL: " + person.Email + "\n" +
                                 $"END:VCARD";
             QRCodeGenerator qrGenerator = new QRCodeGenerator();
             QRCodeData qrCodeData = qrGenerator.CreateQrCode(str, QRCodeGenerator.ECCLevel.Q);

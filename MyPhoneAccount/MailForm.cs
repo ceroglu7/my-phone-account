@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace MyPhoneAccount
 {
-    public partial class Mail : Form
+    public partial class MailForm : Form
     {
         
-        public Mail()
+        public MailForm()
         {
             InitializeComponent();
         }

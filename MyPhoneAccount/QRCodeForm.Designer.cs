@@ -1,7 +1,7 @@
 ﻿
 namespace MyPhoneAccount
 {
-    partial class QRCod
+    partial class QRCodeForm
     {
         /// <summary>
         /// Required designer variable.
