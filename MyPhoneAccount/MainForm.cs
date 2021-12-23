@@ -12,6 +12,7 @@ using QRCoder;
 using System.Drawing;
 using System.Net.Mail;
 using System.Net;
+using System.Text.RegularExpressions;
 
 namespace MyPhoneAccount
 {
@@ -71,7 +72,8 @@ namespace MyPhoneAccount
         {
             if (lstvResult.SelectedItems.Count == 0)
             {
-                lblNoPerson1.Text = "Kayıt Seçilmeli";
+                lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
+                lblNoPerson1.ForeColor = Color.Green;
                 lblFullName.Text = null;
                 lblCompanyName.Text = null;
                 lblGSM.Text = null;
@@ -81,6 +83,8 @@ namespace MyPhoneAccount
                 btnDeletePerson.Enabled = false;
                 btnMail.Enabled = false;
                 btnUpdate.Enabled = false;
+                pcbProfilePic.Image = null;
+
 
 
 
@@ -94,6 +98,7 @@ namespace MyPhoneAccount
                 lblGSM.Text = "GSM No : " + _persons[item].GSM;
                 lblPhone.Text = "Sabit Telefon : " + _persons[item].Phone;
                 lblMail.Text = "E-Mail Adresi : " + _persons[item].Email;
+                pcbProfilePic.ImageLocation = _persons[item].Photo;
                 lblNoPerson1.Text = null;
                 btnCreateQR.Enabled = true;
                 btnDeletePerson.Enabled = true;
@@ -107,12 +112,14 @@ namespace MyPhoneAccount
             btnDeletePerson.Enabled = false;
             btnMail.Enabled = false;
             btnUpdate.Enabled = false;
+            pcbProfilePic.Image = null;
             lstvResult.Clear();
-            lstvResult.View = View.Details;
             lstvResult.GridLines = true;
             lstvResult.FullRowSelect = true;
             lstvResult.Columns.Add("Kişiler");
-            lblNoPerson1.Text = "Kayıt Seçilmeli";
+            lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
+
+            lblNoPerson1.ForeColor = Color.Green;
             lblFullName.Text = null;
             lblCompanyName.Text = null;
             lblGSM.Text = null;
@@ -150,7 +157,9 @@ namespace MyPhoneAccount
                 _persons.RemoveAt(item);
                 RefreshListView();
                 Serialize();
-                lblNoPerson1.Text = "Kayıt Seçilmeli";
+                lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
+
+                lblNoPerson1.ForeColor = Color.Green;
                 lblFullName.Text = null;
                 lblCompanyName.Text = null;
                 lblGSM.Text = null;
@@ -161,6 +170,7 @@ namespace MyPhoneAccount
             btnDeletePerson.Enabled = false;
             btnMail.Enabled = false;
             btnUpdate.Enabled = false;
+            pcbProfilePic.Image = null;
         }
 
 

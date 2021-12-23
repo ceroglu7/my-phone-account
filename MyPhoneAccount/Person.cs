@@ -13,6 +13,8 @@ namespace MyPhoneAccount
             public string Phone { get; set; }
             public string Email { get; set; }
             public bool IsCompany { get; set; }
+            public bool AddedPhoto { get; set; }
+            public string Photo { get; set; }
         }
     }
 }

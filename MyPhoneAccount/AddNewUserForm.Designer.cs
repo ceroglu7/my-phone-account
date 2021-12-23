@@ -33,8 +33,6 @@ namespace MyPhoneAccount
             this.radioBtnCompany = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.txtNameSurname = new System.Windows.Forms.TextBox();
-            this.txtPhone = new System.Windows.Forms.TextBox();
-            this.txtGSM = new System.Windows.Forms.TextBox();
             this.txtCompany = new System.Windows.Forms.TextBox();
             this.txtMail = new System.Windows.Forms.TextBox();
             this.btnAdd = new System.Windows.Forms.Button();
@@ -42,6 +40,10 @@ namespace MyPhoneAccount
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnPhoto = new System.Windows.Forms.Button();
+            this.lblPhotoAdress = new System.Windows.Forms.Label();
+            this.txtPhone = new System.Windows.Forms.TextBox();
+            this.txtGSM = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // radioBtnPerson
@@ -71,7 +73,7 @@ namespace MyPhoneAccount
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 36);
+            this.label1.Location = new System.Drawing.Point(12, 87);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 2;
@@ -79,47 +81,28 @@ namespace MyPhoneAccount
             // 
             // txtNameSurname
             // 
-            this.txtNameSurname.Location = new System.Drawing.Point(16, 52);
+            this.txtNameSurname.Location = new System.Drawing.Point(16, 103);
             this.txtNameSurname.Name = "txtNameSurname";
             this.txtNameSurname.Size = new System.Drawing.Size(248, 20);
             this.txtNameSurname.TabIndex = 6;
             // 
-            // txtPhone
-            // 
-            this.txtPhone.Location = new System.Drawing.Point(16, 201);
-            this.txtPhone.MaxLength = 11;
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Size = new System.Drawing.Size(248, 20);
-            this.txtPhone.TabIndex = 7;
-
-     
-            // 
-            // txtGSM
-            // 
-            this.txtGSM.Location = new System.Drawing.Point(16, 152);
-            this.txtGSM.MaxLength = 11;
-            this.txtGSM.Name = "txtGSM";
-            this.txtGSM.Size = new System.Drawing.Size(248, 20);
-            this.txtGSM.TabIndex = 8;
-           
-            // 
             // txtCompany
             // 
-            this.txtCompany.Location = new System.Drawing.Point(16, 101);
+            this.txtCompany.Location = new System.Drawing.Point(16, 152);
             this.txtCompany.Name = "txtCompany";
             this.txtCompany.Size = new System.Drawing.Size(248, 20);
             this.txtCompany.TabIndex = 9;
             // 
             // txtMail
             // 
-            this.txtMail.Location = new System.Drawing.Point(16, 250);
+            this.txtMail.Location = new System.Drawing.Point(16, 301);
             this.txtMail.Name = "txtMail";
             this.txtMail.Size = new System.Drawing.Size(248, 20);
             this.txtMail.TabIndex = 11;
             // 
             // btnAdd
             // 
-            this.btnAdd.Location = new System.Drawing.Point(16, 288);
+            this.btnAdd.Location = new System.Drawing.Point(16, 339);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(248, 23);
             this.btnAdd.TabIndex = 12;
@@ -130,7 +113,7 @@ namespace MyPhoneAccount
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 234);
+            this.label5.Location = new System.Drawing.Point(12, 285);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(36, 13);
             this.label5.TabIndex = 10;
@@ -139,7 +122,7 @@ namespace MyPhoneAccount
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 185);
+            this.label4.Location = new System.Drawing.Point(12, 236);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 13);
             this.label4.TabIndex = 5;
@@ -148,7 +131,7 @@ namespace MyPhoneAccount
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 136);
+            this.label3.Location = new System.Drawing.Point(13, 187);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(31, 13);
             this.label3.TabIndex = 4;
@@ -157,17 +140,53 @@ namespace MyPhoneAccount
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(13, 85);
+            this.label2.Location = new System.Drawing.Point(13, 136);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(50, 13);
             this.label2.TabIndex = 3;
             this.label2.Text = "Firma Adı";
             // 
+            // btnPhoto
+            // 
+            this.btnPhoto.Location = new System.Drawing.Point(15, 47);
+            this.btnPhoto.Name = "btnPhoto";
+            this.btnPhoto.Size = new System.Drawing.Size(249, 23);
+            this.btnPhoto.TabIndex = 13;
+            this.btnPhoto.Text = "Fotoğraf Ekle";
+            this.btnPhoto.UseVisualStyleBackColor = true;
+            this.btnPhoto.Click += new System.EventHandler(this.btnPhoto_Click);
+            // 
+            // lblPhotoAdress
+            // 
+            this.lblPhotoAdress.AutoSize = true;
+            this.lblPhotoAdress.Location = new System.Drawing.Point(13, 52);
+            this.lblPhotoAdress.Name = "lblPhotoAdress";
+            this.lblPhotoAdress.Size = new System.Drawing.Size(0, 13);
+            this.lblPhotoAdress.TabIndex = 14;
+            // 
+            // txtPhone
+            // 
+            this.txtPhone.Location = new System.Drawing.Point(16, 252);
+            this.txtPhone.MaxLength = 11;
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(248, 20);
+            this.txtPhone.TabIndex = 7;
+            // 
+            // txtGSM
+            // 
+            this.txtGSM.Location = new System.Drawing.Point(16, 203);
+            this.txtGSM.MaxLength = 11;
+            this.txtGSM.Name = "txtGSM";
+            this.txtGSM.Size = new System.Drawing.Size(248, 20);
+            this.txtGSM.TabIndex = 8;
+            // 
             // AddNewUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(276, 332);
+            this.ClientSize = new System.Drawing.Size(276, 382);
+            this.Controls.Add(this.lblPhotoAdress);
+            this.Controls.Add(this.btnPhoto);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.txtMail);
             this.Controls.Add(this.label5);
@@ -183,6 +202,7 @@ namespace MyPhoneAccount
             this.Controls.Add(this.radioBtnPerson);
             this.Name = "AddNewUserForm";
             this.Text = "Rehbere Ekle";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddNewUserForm_FormClosed);
             this.Load += new System.EventHandler(this.AddNewUserForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -195,8 +215,6 @@ namespace MyPhoneAccount
         private System.Windows.Forms.RadioButton radioBtnCompany;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNameSurname;
-        private System.Windows.Forms.TextBox txtPhone;
-        private System.Windows.Forms.TextBox txtGSM;
         private System.Windows.Forms.TextBox txtCompany;
         private System.Windows.Forms.TextBox txtMail;
         private System.Windows.Forms.Button btnAdd;
@@ -204,5 +222,9 @@ namespace MyPhoneAccount
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnPhoto;
+        private System.Windows.Forms.Label lblPhotoAdress;
+        private System.Windows.Forms.TextBox txtPhone;
+        private System.Windows.Forms.TextBox txtGSM;
     }
 }

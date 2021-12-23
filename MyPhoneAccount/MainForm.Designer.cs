@@ -43,6 +43,8 @@ namespace MyPhoneAccount
             this.btnCreateQR = new System.Windows.Forms.Button();
             this.btnMail = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
+            this.pcbProfilePic = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbProfilePic)).BeginInit();
             this.SuspendLayout();
             // 
             // lstvResult
@@ -50,14 +52,15 @@ namespace MyPhoneAccount
             this.lstvResult.HideSelection = false;
             this.lstvResult.Location = new System.Drawing.Point(12, 34);
             this.lstvResult.Name = "lstvResult";
-            this.lstvResult.Size = new System.Drawing.Size(197, 265);
+            this.lstvResult.Size = new System.Drawing.Size(197, 401);
             this.lstvResult.TabIndex = 0;
             this.lstvResult.UseCompatibleStateImageBehavior = false;
+            this.lstvResult.View = System.Windows.Forms.View.Details;
             this.lstvResult.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // btnEkle
             // 
-            this.btnEkle.Location = new System.Drawing.Point(215, 276);
+            this.btnEkle.Location = new System.Drawing.Point(215, 411);
             this.btnEkle.Name = "btnEkle";
             this.btnEkle.Size = new System.Drawing.Size(192, 23);
             this.btnEkle.TabIndex = 1;
@@ -67,7 +70,7 @@ namespace MyPhoneAccount
             // 
             // btnDeletePerson
             // 
-            this.btnDeletePerson.Location = new System.Drawing.Point(216, 243);
+            this.btnDeletePerson.Location = new System.Drawing.Point(216, 378);
             this.btnDeletePerson.Name = "btnDeletePerson";
             this.btnDeletePerson.Size = new System.Drawing.Size(94, 23);
             this.btnDeletePerson.TabIndex = 2;
@@ -78,7 +81,7 @@ namespace MyPhoneAccount
             // lblNoPerson1
             // 
             this.lblNoPerson1.AutoSize = true;
-            this.lblNoPerson1.Location = new System.Drawing.Point(226, 113);
+            this.lblNoPerson1.Location = new System.Drawing.Point(228, 185);
             this.lblNoPerson1.Name = "lblNoPerson1";
             this.lblNoPerson1.Size = new System.Drawing.Size(0, 13);
             this.lblNoPerson1.TabIndex = 3;
@@ -86,7 +89,7 @@ namespace MyPhoneAccount
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
-            this.lblFullName.Location = new System.Drawing.Point(232, 57);
+            this.lblFullName.Location = new System.Drawing.Point(228, 199);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(35, 13);
             this.lblFullName.TabIndex = 4;
@@ -95,7 +98,7 @@ namespace MyPhoneAccount
             // lblCompanyName
             // 
             this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Location = new System.Drawing.Point(232, 86);
+            this.lblCompanyName.Location = new System.Drawing.Point(228, 228);
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(35, 13);
             this.lblCompanyName.TabIndex = 5;
@@ -104,7 +107,7 @@ namespace MyPhoneAccount
             // lblGSM
             // 
             this.lblGSM.AutoSize = true;
-            this.lblGSM.Location = new System.Drawing.Point(232, 113);
+            this.lblGSM.Location = new System.Drawing.Point(228, 255);
             this.lblGSM.Name = "lblGSM";
             this.lblGSM.Size = new System.Drawing.Size(35, 13);
             this.lblGSM.TabIndex = 6;
@@ -113,7 +116,7 @@ namespace MyPhoneAccount
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(232, 141);
+            this.lblPhone.Location = new System.Drawing.Point(228, 283);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(35, 13);
             this.lblPhone.TabIndex = 7;
@@ -122,7 +125,7 @@ namespace MyPhoneAccount
             // lblMail
             // 
             this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(232, 172);
+            this.lblMail.Location = new System.Drawing.Point(228, 314);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(35, 13);
             this.lblMail.TabIndex = 8;
@@ -154,7 +157,7 @@ namespace MyPhoneAccount
             // 
             // btnCreateQR
             // 
-            this.btnCreateQR.Location = new System.Drawing.Point(215, 214);
+            this.btnCreateQR.Location = new System.Drawing.Point(215, 349);
             this.btnCreateQR.Name = "btnCreateQR";
             this.btnCreateQR.Size = new System.Drawing.Size(95, 23);
             this.btnCreateQR.TabIndex = 11;
@@ -164,7 +167,7 @@ namespace MyPhoneAccount
             // 
             // btnMail
             // 
-            this.btnMail.Location = new System.Drawing.Point(312, 214);
+            this.btnMail.Location = new System.Drawing.Point(312, 349);
             this.btnMail.Name = "btnMail";
             this.btnMail.Size = new System.Drawing.Size(95, 23);
             this.btnMail.TabIndex = 12;
@@ -174,7 +177,7 @@ namespace MyPhoneAccount
             // 
             // btnUpdate
             // 
-            this.btnUpdate.Location = new System.Drawing.Point(313, 243);
+            this.btnUpdate.Location = new System.Drawing.Point(313, 378);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(94, 23);
             this.btnUpdate.TabIndex = 13;
@@ -182,11 +185,21 @@ namespace MyPhoneAccount
             this.btnUpdate.UseVisualStyleBackColor = true;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
+            // pcbProfilePic
+            // 
+            this.pcbProfilePic.Location = new System.Drawing.Point(245, 44);
+            this.pcbProfilePic.Name = "pcbProfilePic";
+            this.pcbProfilePic.Size = new System.Drawing.Size(130, 130);
+            this.pcbProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbProfilePic.TabIndex = 14;
+            this.pcbProfilePic.TabStop = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(419, 311);
+            this.ClientSize = new System.Drawing.Size(419, 447);
+            this.Controls.Add(this.pcbProfilePic);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnMail);
             this.Controls.Add(this.btnCreateQR);
@@ -205,6 +218,7 @@ namespace MyPhoneAccount
             this.Text = "Rehberim";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);
             this.Load += new System.EventHandler(this.MainForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbProfilePic)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -226,6 +240,7 @@ namespace MyPhoneAccount
         private System.Windows.Forms.Button btnCreateQR;
         private System.Windows.Forms.Button btnMail;
         private System.Windows.Forms.Button btnUpdate;
+        private System.Windows.Forms.PictureBox pcbProfilePic;
     }
 }
 

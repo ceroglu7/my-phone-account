@@ -10,11 +10,15 @@ using System.Windows.Forms;
 
 namespace MyPhoneAccount
 {
+
     public partial class AddNewUserForm : Form
     {
+        string PhotoWay, PhotoName;
+        string GoalFolder = @"ProfilePictures";
+        bool AddPhoto;
         public PersonDto.Person ReturnPerson { get; set; }
         CultureInfo culture = Thread.CurrentThread.CurrentCulture;
-
+        OpenFileDialog file = new OpenFileDialog();
         public AddNewUserForm()
         {
             InitializeComponent();
@@ -47,10 +51,10 @@ namespace MyPhoneAccount
         {
 
             txtCompany.Enabled = true;
-            txtPhone.Enabled = true;
+            txtGSM.Enabled = true;
             txtMail.Enabled = true;
             txtNameSurname.Enabled = true;
-            txtGSM.Enabled = true;
+            txtPhone.Enabled = true;
 
         }
         public void Add()
@@ -64,7 +68,7 @@ namespace MyPhoneAccount
                     Email = txtMail.Text,
                     Phone = txtPhone.Text,
                     IsCompany = false,
-                    CompanyName=String.Empty
+                    CompanyName = String.Empty,
                 };
 
                 if (radioBtnCompany.Checked)
@@ -72,6 +76,24 @@ namespace MyPhoneAccount
                     person.CompanyName = txtCompany.Text;
                     person.IsCompany = true;
                 }
+                else
+                {
+                    person.CompanyName = string.Empty;
+                    person.IsCompany = false;
+                }
+                if (AddPhoto)
+                {
+                    File.Copy(PhotoWay, GoalFolder + "\\" + person.Id + PhotoName);
+                    person.AddedPhoto = true;
+                    person.Photo = GoalFolder+ "\\" +person.Id+ PhotoName;
+                   
+                }
+                else
+                {
+                    person.AddedPhoto = false;
+                    person.Photo = GoalFolder + "\\"+"Default.png";
+                }
+
                 //Validation
 
                 PersonDtoValidator validation = new PersonDtoValidator();
@@ -120,7 +142,36 @@ namespace MyPhoneAccount
         }
         private void AddNewUserForm_Load(object sender, EventArgs e)
         {
-            
+
+        }
+
+        public void btnPhoto_Click(object sender, EventArgs e)
+        {
+            PhotoWay = @"C:\Users\HP\Desktop\Default.png";
+            file.Filter = "PNG Dosyası |*.png| JPEG Dosyası |*.jpg";
+            file.FilterIndex = 1;
+            file.RestoreDirectory = true;
+            file.CheckFileExists = true;
+            file.Title = "Dosya Seçiniz..";
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+                
+                PhotoWay = file.FileName.ToString() ;
+                PhotoName = file.SafeFileName.ToString();
+                btnPhoto.Text = PhotoName;
+                AddPhoto = true;
+            }
+            else
+            {
+                AddPhoto = false;
+            }
+        }
+
+        private void AddNewUserForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            PhotoWay = string.Empty;
+            PhotoName = string.Empty;
+            btnPhoto.Text = "Fotoğraf Ekle";
         }
 
         
