@@ -37,6 +37,21 @@ namespace MyPhoneAccount
             {
                 _persons.Add(_addNewUserForm.ReturnPerson);
             }
+            else
+            {
+                lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
+                lblNoPerson1.ForeColor = Color.Green;
+                lblFullName.Text = null;
+                lblCompanyName.Text = null;
+                lblGSM.Text = null;
+                lblPhone.Text = null;
+                lblMail.Text = null;
+                btnCreateQR.Enabled = false;
+                btnDeletePerson.Enabled = false;
+                btnMail.Enabled = false;
+                btnUpdate.Enabled = false;
+                pcbProfilePic.Image = null;
+            }
             Serialize();
             RefreshListView();
         }
@@ -51,6 +66,8 @@ namespace MyPhoneAccount
             update.companyName = selectedPerson.CompanyName;
             update.email = selectedPerson.Email;
             update.phone = selectedPerson.Phone;
+            
+            update.BeforePhotoWay = selectedPerson.Photo;
 
             var result = update.ShowDialog();
             if (result == DialogResult.OK)
@@ -60,8 +77,22 @@ namespace MyPhoneAccount
                 _persons[item].CompanyName = update.ReturnPerson.CompanyName;
                 _persons[item].Phone = update.ReturnPerson.Phone;
                 _persons[item].Email = update.ReturnPerson.Email;
-                //_persons.RemoveAt(item);
-                //_persons.Add(update.ReturnPerson);
+                _persons[item].Photo = update.ReturnPerson.Photo;
+            }
+            else
+            {
+                lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
+                lblNoPerson1.ForeColor = Color.Green;
+                lblFullName.Text = null;
+                lblCompanyName.Text = null;
+                lblGSM.Text = null;
+                lblPhone.Text = null;
+                lblMail.Text = null;
+                btnCreateQR.Enabled = false;
+                btnDeletePerson.Enabled = false;
+                btnMail.Enabled = false;
+                btnUpdate.Enabled = false;
+                pcbProfilePic.Image = null;
             }
 
             Serialize();
@@ -84,6 +115,7 @@ namespace MyPhoneAccount
                 btnMail.Enabled = false;
                 btnUpdate.Enabled = false;
                 pcbProfilePic.Image = null;
+                
 
 
 

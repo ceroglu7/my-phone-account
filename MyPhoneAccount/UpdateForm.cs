@@ -14,6 +14,7 @@ namespace MyPhoneAccount
     {
         public PersonDto.Person ReturnPerson { get; set; }
         CultureInfo culture = Thread.CurrentThread.CurrentCulture;
+        OpenFileDialog file = new OpenFileDialog();
         public UpdateForm()
         {
             InitializeComponent();
@@ -23,6 +24,11 @@ namespace MyPhoneAccount
         public string gsm;
         public string email;
         public string phone;
+        public string BeforePhotoWay;
+        public string GoalFolder = @"ProfilePictures";
+        public string UpdatePhotoWay;
+        public string UpdatePhotoName;
+        public bool UpdatePhoto, DeleteSelect;
 
         private void Update_Load(object sender, EventArgs e)
         {
@@ -31,7 +37,7 @@ namespace MyPhoneAccount
             txtMail.Text = email;
             txtPhone.Text=phone;
             txtCompany.Text = companyName;
-            
+            pcbProfilePic.ImageLocation = BeforePhotoWay;
         }
         public void update()
         {
@@ -44,8 +50,20 @@ namespace MyPhoneAccount
                     Email = txtMail.Text,
                     Phone = txtPhone.Text,
                     IsCompany = false,
-                    CompanyName = String.Empty
+                    CompanyName = String.Empty,
                 };
+                if (UpdatePhoto)
+                {
+                    File.Copy(UpdatePhotoWay, GoalFolder + "\\" + person.Id + UpdatePhotoName);
+                    person.AddedPhoto = true;
+                    person.Photo = GoalFolder + "\\" + person.Id + UpdatePhotoName;
+
+                }
+                else
+                {
+                    person.AddedPhoto = false;
+                    person.Photo = GoalFolder + "\\" + "Default.png";
+                }
                 PersonDtoValidator validation = new PersonDtoValidator();
                 ValidationResult result = validation.Validate(person);
                 if (!result.IsValid)
@@ -58,7 +76,7 @@ namespace MyPhoneAccount
                     MessageBox.Show(errorMessage, "Hatalar", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-
+                
 
 
                 //Validation
@@ -87,6 +105,35 @@ namespace MyPhoneAccount
 
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            file.Filter = "PNG Dosyası |*.png| JPEG Dosyası |*.jpg";
+            file.FilterIndex = 1;
+            file.RestoreDirectory = true;
+            file.CheckFileExists = true;
+            file.Title = "Dosya Seçiniz..";
+            if (file.ShowDialog() == DialogResult.OK)
+            {
+
+                UpdatePhotoWay = file.FileName.ToString();
+                UpdatePhotoName = file.SafeFileName.ToString();
+                btnSelectPhoto.Text = UpdatePhotoName;
+                pcbProfilePic.ImageLocation = UpdatePhotoWay;
+                UpdatePhoto = true;
+                DeleteSelect = false;
+            }
+            else
+            {
+                UpdatePhoto = false;
+                UpdatePhotoWay = BeforePhotoWay;
+                DeleteSelect = true;
+            }
+        }
+        private void Update_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            
+            this.Close();
+        }
     }
 }

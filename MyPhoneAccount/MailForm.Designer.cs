@@ -69,7 +69,7 @@ namespace MyPhoneAccount
             this.lblSelected.Size = new System.Drawing.Size(0, 13);
             this.lblSelected.TabIndex = 4;
             // 
-            // Mail
+            // MailForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -78,7 +78,8 @@ namespace MyPhoneAccount
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtSendingAdress);
-            this.Name = "Mail";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "MailForm";
             this.Text = "Mail";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Mail_FormClosed);
             this.Load += new System.EventHandler(this.Mail_Load);

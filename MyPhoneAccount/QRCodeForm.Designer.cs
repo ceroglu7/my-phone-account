@@ -57,12 +57,13 @@ namespace MyPhoneAccount
             this.lblTimer.Size = new System.Drawing.Size(0, 13);
             this.lblTimer.TabIndex = 1;
             // 
-            // QRCod
+            // QRCodeForm
             // 
             this.ClientSize = new System.Drawing.Size(284, 287);
             this.Controls.Add(this.lblTimer);
             this.Controls.Add(this.pictureBox1);
-            this.Name = "QRCod";
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "QRCodeForm";
             this.Text = "QR Kod Oluşturucu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.QRCod_FormClosed);
             this.Load += new System.EventHandler(this.QRCod_Load);

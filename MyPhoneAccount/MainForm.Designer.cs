@@ -214,6 +214,7 @@ namespace MyPhoneAccount
             this.Controls.Add(this.btnDeletePerson);
             this.Controls.Add(this.btnEkle);
             this.Controls.Add(this.lstvResult);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.Text = "Rehberim";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainForm_FormClosed);

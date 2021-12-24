@@ -200,6 +200,7 @@ namespace MyPhoneAccount
             this.Controls.Add(this.label1);
             this.Controls.Add(this.radioBtnCompany);
             this.Controls.Add(this.radioBtnPerson);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "AddNewUserForm";
             this.Text = "Rehbere Ekle";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.AddNewUserForm_FormClosed);
