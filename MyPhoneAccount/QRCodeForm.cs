@@ -1,21 +1,12 @@
-﻿using Newtonsoft.Json;
-using QRCoder;
+﻿using QRCoder;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MyPhoneAccount
 {
     public partial class QRCodeForm : Form
     {
-
         public QRCodeForm()
         {
             InitializeComponent();
@@ -43,14 +34,8 @@ namespace MyPhoneAccount
             Bitmap qrCodeImage = qrCode.GetGraphic(20);
             pictureBox1.Image = qrCodeImage;
         }
-
-        
-
         private void timer1_Tick_1(object sender, EventArgs e)
         {
-
-            
-
             if (second > 0)
             {
                 lblTimer.Text = Convert.ToString(second--) + " saniye sonra kapanacak";

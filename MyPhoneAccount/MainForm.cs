@@ -4,22 +4,15 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.IO;
 using FluentValidation;
-using Microsoft.Azure.Amqp.Framing;
-using System.Text.RegularExpressions;
 using System.Linq;
-using MyPhoneAccount;
-using QRCoder;
 using System.Drawing;
-using System.Net.Mail;
-using System.Net;
-using System.Text.RegularExpressions;
+
 
 namespace MyPhoneAccount
 {
     public partial class MainForm : Form
     {
         List<PersonDto.Person> _persons = new List<PersonDto.Person>();
-        List<PersonDto.Person> _persons_reserved = new List<PersonDto.Person>();
         AddNewUserForm _addNewUserForm = new AddNewUserForm();
         UpdateForm update = new UpdateForm();
         QRCodeForm qrcode = new QRCodeForm();
@@ -81,11 +74,6 @@ namespace MyPhoneAccount
                 _persons[item].Email = update.ReturnPerson.Email;
                 _persons[item].Photo = update.ReturnPerson.Photo;
             }
-            else
-            {
-                CleanScreen();
-            }
-
             Serialize();
             RefreshListView();
         }
@@ -140,15 +128,11 @@ namespace MyPhoneAccount
         }
         private void btnDeletePerson_Click(object sender, EventArgs e)
         {
-
-            if (lstvResult.SelectedItems.Count > 0)
-            {
                 var item = lstvResult.SelectedItems[0].Index;
                 _persons.RemoveAt(item);
                 RefreshListView();
                 Serialize();
                 CleanScreen();
-            }
         }
         private void RefreshListView()
         {
@@ -235,32 +219,13 @@ namespace MyPhoneAccount
         }
         public void btnCreateQR_Click(object sender, EventArgs e)
         {
-            if (lstvResult.SelectedItems.Count > 0)
-            {
                 var item = lstvResult.SelectedItems[0].Index;
                 var selectedPerson = _persons[item];
                 qrcode.SetData(selectedPerson);
                 qrcode.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Seçilmedi");
-            }
-        }
-        public void selecteditem()
-        {
-            var item = lstvResult.SelectedItems[0].Index;
-            var selectedPerson = _persons[item];
-            string GSM = selectedPerson.GSM;
-            string FULLNAME = selectedPerson.Fullname;
-            string COMPANY = selectedPerson.CompanyName;
-            string EMAIL = selectedPerson.Email;
         }
         public void btnMail_Click(object sender, EventArgs e)
         {
-
-            if (lstvResult.SelectedItems.Count > 0)
-            {
                 var item = lstvResult.SelectedItems[0].Index;
                 var selectedPerson = _persons[item];
                 mail.gsm = selectedPerson.GSM;
@@ -268,11 +233,6 @@ namespace MyPhoneAccount
                 mail.companyName = selectedPerson.CompanyName;
                 mail.email = selectedPerson.Email;
                 mail.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("aaa");
-            }
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {

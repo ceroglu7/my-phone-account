@@ -1,11 +1,5 @@
-﻿using FluentValidation;
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
+﻿using System;
 using System.Net.Mail;
-using System.Windows.Controls;
 using System.Windows.Forms;
 
 namespace MyPhoneAccount

@@ -1,8 +1,6 @@
 ﻿using FluentValidation.Results;
 using MyPhoneAccount.Validators;
-using Newtonsoft.Json;
 using System;
-using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Threading;
@@ -17,7 +15,6 @@ namespace MyPhoneAccount
         string GoalFolder = @"ProfilePictures";
         bool AddPhoto;
         public PersonDto.Person ReturnPerson { get; set; }
-        CultureInfo culture = Thread.CurrentThread.CurrentCulture;
         OpenFileDialog file = new OpenFileDialog();
         public AddNewUserForm()
         {
