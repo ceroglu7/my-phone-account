@@ -14,9 +14,11 @@ namespace MyPhoneAccount
     {
         List<PersonDto.Person> _persons = new List<PersonDto.Person>();
         AddNewUserForm _addNewUserForm = new AddNewUserForm();
+        OpenFileDialog file = new OpenFileDialog();
         UpdateForm update = new UpdateForm();
         QRCodeForm qrcode = new QRCodeForm();
         MailForm mail = new MailForm();
+        string GoalFolder = "ProfilePictures";
         string path = "persons.json";
         public MainForm()
         {
@@ -36,6 +38,7 @@ namespace MyPhoneAccount
             btnMail.Enabled = false;
             btnUpdate.Enabled = false;
             pcbProfilePic.Image = null;
+
         }
         private void btnEkle_Click(object sender, EventArgs e)
         {
@@ -129,7 +132,9 @@ namespace MyPhoneAccount
         private void btnDeletePerson_Click(object sender, EventArgs e)
         {
                 var item = lstvResult.SelectedItems[0].Index;
+                File.Delete(GoalFolder + "\\" + _persons[item].Id + _persons[item].PhotoName);
                 _persons.RemoveAt(item);
+                
                 RefreshListView();
                 Serialize();
                 CleanScreen();
@@ -215,7 +220,6 @@ namespace MyPhoneAccount
             }
             else
                 RefreshListView();
-            
         }
         public void btnCreateQR_Click(object sender, EventArgs e)
         {
@@ -237,6 +241,14 @@ namespace MyPhoneAccount
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            LoginForm login = new LoginForm();
+            login.Show();
+            this.Hide();
+
         }
     }
 }

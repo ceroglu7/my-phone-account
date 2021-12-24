@@ -15,6 +15,7 @@ namespace MyPhoneAccount
             public bool IsCompany { get; set; }
             public bool AddedPhoto { get; set; }
             public string Photo { get; set; }
+            public string PhotoName { get; set; }
         }
     }
 }

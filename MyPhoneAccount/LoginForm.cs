@@ -51,5 +51,10 @@ namespace MyPhoneAccount
         {
             txtPassword.PasswordChar = '*';
         }
+
+        private void LoginForm_FormClosed_1(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

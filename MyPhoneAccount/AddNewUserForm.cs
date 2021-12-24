@@ -83,6 +83,7 @@ namespace MyPhoneAccount
                     File.Copy(PhotoWay, GoalFolder + "\\" + person.Id + PhotoName);
                     person.AddedPhoto = true;
                     person.Photo = GoalFolder+ "\\" +person.Id+ PhotoName;
+                    person.PhotoName = PhotoName;
                    
                 }
                 else

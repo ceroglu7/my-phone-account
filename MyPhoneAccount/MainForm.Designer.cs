@@ -44,6 +44,7 @@ namespace MyPhoneAccount
             this.btnMail = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.pcbProfilePic = new System.Windows.Forms.PictureBox();
+            this.btnExit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pcbProfilePic)).BeginInit();
             this.SuspendLayout();
             // 
@@ -62,7 +63,7 @@ namespace MyPhoneAccount
             // 
             this.btnEkle.Location = new System.Drawing.Point(215, 411);
             this.btnEkle.Name = "btnEkle";
-            this.btnEkle.Size = new System.Drawing.Size(192, 23);
+            this.btnEkle.Size = new System.Drawing.Size(95, 23);
             this.btnEkle.TabIndex = 1;
             this.btnEkle.Text = "Yeni Kayıt Ekle";
             this.btnEkle.UseVisualStyleBackColor = true;
@@ -194,11 +195,22 @@ namespace MyPhoneAccount
             this.pcbProfilePic.TabIndex = 14;
             this.pcbProfilePic.TabStop = false;
             // 
+            // btnExit
+            // 
+            this.btnExit.Location = new System.Drawing.Point(313, 411);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(94, 23);
+            this.btnExit.TabIndex = 15;
+            this.btnExit.Text = "Çıkış Yap";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(419, 447);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.pcbProfilePic);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnMail);
@@ -242,6 +254,7 @@ namespace MyPhoneAccount
         private System.Windows.Forms.Button btnMail;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.PictureBox pcbProfilePic;
+        private System.Windows.Forms.Button btnExit;
     }
 }
 

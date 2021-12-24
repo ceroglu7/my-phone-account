@@ -55,12 +55,12 @@ namespace MyPhoneAccount
                     File.Copy(UpdatePhotoWay, GoalFolder + "\\" + person.Id + UpdatePhotoName);
                     person.AddedPhoto = true;
                     person.Photo = GoalFolder + "\\" + person.Id + UpdatePhotoName;
-
+                    File.Delete(BeforePhotoWay);
                 }
                 else
                 {
                     person.AddedPhoto = false;
-                    person.Photo = GoalFolder + "\\" + "Default.png";
+                    person.Photo = BeforePhotoWay;
                 }
                 PersonDtoValidator validation = new PersonDtoValidator();
                 ValidationResult result = validation.Validate(person);
