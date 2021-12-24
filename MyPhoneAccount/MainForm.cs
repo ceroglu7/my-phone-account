@@ -29,6 +29,21 @@ namespace MyPhoneAccount
         {
             InitializeComponent();
         }
+        private void CleanScreen()
+        {
+            lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
+            lblNoPerson1.ForeColor = Color.Green;
+            lblFullName.Text = null;
+            lblCompanyName.Text = null;
+            lblGSM.Text = null;
+            lblPhone.Text = null;
+            lblMail.Text = null;
+            btnCreateQR.Enabled = false;
+            btnDeletePerson.Enabled = false;
+            btnMail.Enabled = false;
+            btnUpdate.Enabled = false;
+            pcbProfilePic.Image = null;
+        }
         private void btnEkle_Click(object sender, EventArgs e)
         {
             _addNewUserForm.Clear();
@@ -39,26 +54,13 @@ namespace MyPhoneAccount
             }
             else
             {
-                lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
-                lblNoPerson1.ForeColor = Color.Green;
-                lblFullName.Text = null;
-                lblCompanyName.Text = null;
-                lblGSM.Text = null;
-                lblPhone.Text = null;
-                lblMail.Text = null;
-                btnCreateQR.Enabled = false;
-                btnDeletePerson.Enabled = false;
-                btnMail.Enabled = false;
-                btnUpdate.Enabled = false;
-                pcbProfilePic.Image = null;
+                CleanScreen();
             }
             Serialize();
             RefreshListView();
         }
-        
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-
             var item = lstvResult.SelectedItems[0].Index;
             var selectedPerson = _persons[item];
             update.gsm = selectedPerson.GSM;
@@ -81,45 +83,17 @@ namespace MyPhoneAccount
             }
             else
             {
-                lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
-                lblNoPerson1.ForeColor = Color.Green;
-                lblFullName.Text = null;
-                lblCompanyName.Text = null;
-                lblGSM.Text = null;
-                lblPhone.Text = null;
-                lblMail.Text = null;
-                btnCreateQR.Enabled = false;
-                btnDeletePerson.Enabled = false;
-                btnMail.Enabled = false;
-                btnUpdate.Enabled = false;
-                pcbProfilePic.Image = null;
+                CleanScreen();
             }
 
             Serialize();
             RefreshListView();
         }
-
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lstvResult.SelectedItems.Count == 0)
             {
-                lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
-                lblNoPerson1.ForeColor = Color.Green;
-                lblFullName.Text = null;
-                lblCompanyName.Text = null;
-                lblGSM.Text = null;
-                lblPhone.Text = null;
-                lblMail.Text = null;
-                btnCreateQR.Enabled = false;
-                btnDeletePerson.Enabled = false;
-                btnMail.Enabled = false;
-                btnUpdate.Enabled = false;
-                pcbProfilePic.Image = null;
-                
-
-
-
-
+                CleanScreen();
             }
             else
             {
@@ -140,25 +114,11 @@ namespace MyPhoneAccount
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
-            btnCreateQR.Enabled = false;
-            btnDeletePerson.Enabled = false;
-            btnMail.Enabled = false;
-            btnUpdate.Enabled = false;
-            pcbProfilePic.Image = null;
+            CleanScreen();
             lstvResult.Clear();
             lstvResult.GridLines = true;
             lstvResult.FullRowSelect = true;
             lstvResult.Columns.Add("Kişiler");
-            lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
-
-            lblNoPerson1.ForeColor = Color.Green;
-            lblFullName.Text = null;
-            lblCompanyName.Text = null;
-            lblGSM.Text = null;
-            lblPhone.Text = null;
-            lblMail.Text = null;
-
-
             string path = @"persons.json";
             if (!File.Exists(path))
             {
@@ -178,8 +138,6 @@ namespace MyPhoneAccount
                 }
             }
         }
-
-
         private void btnDeletePerson_Click(object sender, EventArgs e)
         {
 
@@ -189,23 +147,9 @@ namespace MyPhoneAccount
                 _persons.RemoveAt(item);
                 RefreshListView();
                 Serialize();
-                lblNoPerson1.Text = "Sol taraftan bir kişi seçiniz!";
-
-                lblNoPerson1.ForeColor = Color.Green;
-                lblFullName.Text = null;
-                lblCompanyName.Text = null;
-                lblGSM.Text = null;
-                lblPhone.Text = null;
-                lblMail.Text = null;
+                CleanScreen();
             }
-            btnCreateQR.Enabled = false;
-            btnDeletePerson.Enabled = false;
-            btnMail.Enabled = false;
-            btnUpdate.Enabled = false;
-            pcbProfilePic.Image = null;
         }
-
-
         private void RefreshListView()
         {
             lstvResult.Items.Clear();
@@ -216,24 +160,16 @@ namespace MyPhoneAccount
                 lstvResult.Items.Add(listViewItem);
             }
         }
-
-
         public void Deserialize()
         {
             string PersonText = File.ReadAllText(path);
             _persons = JsonConvert.DeserializeObject<List<PersonDto.Person>>(PersonText);
-            
-               
         }
-
-
         public void Serialize()
         {
             string personJson = JsonConvert.SerializeObject(_persons);
             File.WriteAllText(path, personJson);
         }
-
-
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             Deserialize();
@@ -295,6 +231,7 @@ namespace MyPhoneAccount
             }
             else
                 RefreshListView();
+            
         }
         public void btnCreateQR_Click(object sender, EventArgs e)
         {
@@ -319,7 +256,6 @@ namespace MyPhoneAccount
             string COMPANY = selectedPerson.CompanyName;
             string EMAIL = selectedPerson.Email;
         }
-
         public void btnMail_Click(object sender, EventArgs e)
         {
 
@@ -338,13 +274,9 @@ namespace MyPhoneAccount
                 MessageBox.Show("aaa");
             }
         }
-
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
-
-
     }
-
 }
