@@ -64,8 +64,8 @@ namespace MyPhoneAccount
             update.companyName = selectedPerson.CompanyName;
             update.email = selectedPerson.Email;
             update.phone = selectedPerson.Phone;
-            
-            update.BeforePhotoWay = selectedPerson.Photo;
+            update.PhotoWay = selectedPerson.Photo.ToString();
+            update.PhotoName = selectedPerson.PhotoName;
 
             var result = update.ShowDialog();
             if (result == DialogResult.OK)
@@ -76,7 +76,11 @@ namespace MyPhoneAccount
                 _persons[item].Phone = update.ReturnPerson.Phone;
                 _persons[item].Email = update.ReturnPerson.Email;
                 _persons[item].Photo = update.ReturnPerson.Photo;
+                _persons[item].PhotoName = update.ReturnPerson.PhotoName;
+                _persons[item].AddedPhoto = update.ReturnPerson.AddedPhoto;
+
             }
+            CleanScreen();
             Serialize();
             RefreshListView();
         }
@@ -131,20 +135,22 @@ namespace MyPhoneAccount
         }
         private void btnDeletePerson_Click(object sender, EventArgs e)
         {
-                var item = lstvResult.SelectedItems[0].Index;
-                File.Delete(GoalFolder + "\\" + _persons[item].Id + _persons[item].PhotoName);
-                _persons.RemoveAt(item);
-                
-                RefreshListView();
-                Serialize();
-                CleanScreen();
+            var item = lstvResult.SelectedItems[0].Index;
+            if (_persons[item].AddedPhoto)
+            {
+                File.Delete(_persons[item].Photo);
+            }
+            _persons.RemoveAt(item);
+            RefreshListView();
+            Serialize();
+            CleanScreen();
         }
         private void RefreshListView()
         {
             lstvResult.Items.Clear();
             foreach (var item in _persons)
             {
-                string[] row = { item.Fullname};
+                string[] row = { item.Fullname };
                 var listViewItem = new ListViewItem(row);
                 lstvResult.Items.Add(listViewItem);
             }
@@ -223,20 +229,20 @@ namespace MyPhoneAccount
         }
         public void btnCreateQR_Click(object sender, EventArgs e)
         {
-                var item = lstvResult.SelectedItems[0].Index;
-                var selectedPerson = _persons[item];
-                qrcode.SetData(selectedPerson);
-                qrcode.ShowDialog();
+            var item = lstvResult.SelectedItems[0].Index;
+            var selectedPerson = _persons[item];
+            qrcode.SetData(selectedPerson);
+            qrcode.ShowDialog();
         }
         public void btnMail_Click(object sender, EventArgs e)
         {
-                var item = lstvResult.SelectedItems[0].Index;
-                var selectedPerson = _persons[item];
-                mail.gsm = selectedPerson.GSM;
-                mail.fullName = selectedPerson.Fullname;
-                mail.companyName = selectedPerson.CompanyName;
-                mail.email = selectedPerson.Email;
-                mail.ShowDialog();
+            var item = lstvResult.SelectedItems[0].Index;
+            var selectedPerson = _persons[item];
+            mail.gsm = selectedPerson.GSM;
+            mail.fullName = selectedPerson.Fullname;
+            mail.companyName = selectedPerson.CompanyName;
+            mail.email = selectedPerson.Email;
+            mail.ShowDialog();
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {

@@ -13,6 +13,7 @@ namespace MyPhoneAccount
         public PersonDto.Person ReturnPerson { get; set; }
         CultureInfo culture = Thread.CurrentThread.CurrentCulture;
         OpenFileDialog file = new OpenFileDialog();
+        string DefaultPhotoWay = @"\Default.png";
         public UpdateForm()
         {
             InitializeComponent();
@@ -22,11 +23,11 @@ namespace MyPhoneAccount
         public string gsm;
         public string email;
         public string phone;
-        public string BeforePhotoWay;
+        public string BeforePhotoWay, BeforePhotoName;
         public string GoalFolder = @"ProfilePictures";
-        public string UpdatePhotoWay;
-        public string UpdatePhotoName;
-        public bool UpdatePhoto, DeleteSelect;
+        //public string UpdatePhotoWay, UpdatePhotoName;
+        public string PhotoWay, PhotoName;
+        bool UpdatePhoto;
 
         private void Update_Load(object sender, EventArgs e)
         {
@@ -35,7 +36,10 @@ namespace MyPhoneAccount
             txtMail.Text = email;
             txtPhone.Text=phone;
             txtCompany.Text = companyName;
+            BeforePhotoWay = PhotoWay;
+            BeforePhotoName = PhotoName;
             pcbProfilePic.ImageLocation = BeforePhotoWay;
+            btnSelectPhoto.Text ="Fotoğraf Seç";
         }
         public void update()
         {
@@ -48,19 +52,31 @@ namespace MyPhoneAccount
                     Email = txtMail.Text,
                     Phone = txtPhone.Text,
                     IsCompany = false,
-                    CompanyName = String.Empty,
+                    CompanyName = String.Empty
                 };
                 if (UpdatePhoto)
                 {
-                    File.Copy(UpdatePhotoWay, GoalFolder + "\\" + person.Id + UpdatePhotoName);
-                    person.AddedPhoto = true;
-                    person.Photo = GoalFolder + "\\" + person.Id + UpdatePhotoName;
-                    File.Delete(BeforePhotoWay);
+                    if (pcbProfilePic.Image.Width != pcbProfilePic.Image.Height)
+                    {
+                        MessageBox.Show("Lütfen eni ve boyu aynı olan fotoğraf seçiniz!");
+                        return;
+                    }
+                    else
+                    {
+                        File.Copy(PhotoWay, GoalFolder + "\\" + person.Id + PhotoName);
+                        person.AddedPhoto = true;
+                        person.Photo = GoalFolder + "\\" + person.Id + PhotoName;
+                        person.PhotoName = PhotoName;
+                        if (BeforePhotoWay != DefaultPhotoWay)
+                        {
+                            File.Delete(BeforePhotoWay);
+                        }    
+                    }
                 }
                 else
                 {
-                    person.AddedPhoto = false;
                     person.Photo = BeforePhotoWay;
+                    person.PhotoName = BeforePhotoName;
                 }
                 PersonDtoValidator validation = new PersonDtoValidator();
                 ValidationResult result = validation.Validate(person);
@@ -104,7 +120,7 @@ namespace MyPhoneAccount
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSelectPhoto_Click(object sender, EventArgs e)
         {
             file.Filter = "PNG Dosyası |*.png| JPEG Dosyası |*.jpg";
             file.FilterIndex = 1;
@@ -113,24 +129,19 @@ namespace MyPhoneAccount
             file.Title = "Dosya Seçiniz..";
             if (file.ShowDialog() == DialogResult.OK)
             {
-
-                UpdatePhotoWay = file.FileName.ToString();
-                UpdatePhotoName = file.SafeFileName.ToString();
-                btnSelectPhoto.Text = UpdatePhotoName;
-                pcbProfilePic.ImageLocation = UpdatePhotoWay;
+                PhotoWay = file.FileName.ToString();
+                PhotoName = file.SafeFileName.ToString();
+                btnSelectPhoto.Text = PhotoName;
+                pcbProfilePic.ImageLocation = PhotoWay;
                 UpdatePhoto = true;
-                DeleteSelect = false;
             }
             else
             {
                 UpdatePhoto = false;
-                UpdatePhotoWay = BeforePhotoWay;
-                DeleteSelect = true;
             }
         }
         private void Update_FormClosed(object sender, FormClosedEventArgs e)
         {
-            
             this.Close();
         }
     }

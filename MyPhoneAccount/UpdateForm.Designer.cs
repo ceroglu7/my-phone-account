@@ -145,7 +145,7 @@ namespace MyPhoneAccount
             this.btnSelectPhoto.TabIndex = 24;
             this.btnSelectPhoto.Text = "Fotoğraf Seç";
             this.btnSelectPhoto.UseVisualStyleBackColor = true;
-            this.btnSelectPhoto.Click += new System.EventHandler(this.button1_Click);
+            this.btnSelectPhoto.Click += new System.EventHandler(this.btnSelectPhoto_Click);
             // 
             // pcbProfilePic
             // 

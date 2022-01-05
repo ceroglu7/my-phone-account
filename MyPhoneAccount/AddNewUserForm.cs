@@ -13,6 +13,7 @@ namespace MyPhoneAccount
     {
         string PhotoWay, PhotoName;
         string GoalFolder = @"ProfilePictures";
+        string DefaultPhotoWay = @"ProfilePictures\Default.png";
         bool AddPhoto;
         public PersonDto.Person ReturnPerson { get; set; }
         OpenFileDialog file = new OpenFileDialog();
@@ -89,11 +90,9 @@ namespace MyPhoneAccount
                 else
                 {
                     person.AddedPhoto = false;
-                    person.Photo = GoalFolder + "\\"+"Default.png";
+                    person.Photo = DefaultPhotoWay;
                 }
-
                 //Validation
-
                 PersonDtoValidator validation = new PersonDtoValidator();
                 ValidationResult result = validation.Validate(person);
                 if (!result.IsValid)
@@ -145,7 +144,7 @@ namespace MyPhoneAccount
 
         public void btnPhoto_Click(object sender, EventArgs e)
         {
-            PhotoWay = @"C:\Users\HP\Desktop\Default.png";
+            PhotoWay = @GoalFolder + "\\" + "default.png";
             file.Filter = "PNG Dosyası |*.png| JPEG Dosyası |*.jpg";
             file.FilterIndex = 1;
             file.RestoreDirectory = true;
@@ -154,7 +153,7 @@ namespace MyPhoneAccount
             if (file.ShowDialog() == DialogResult.OK)
             {
                 
-                PhotoWay = file.FileName.ToString() ;
+                PhotoWay = file.FileName.ToString();
                 PhotoName = file.SafeFileName.ToString();
                 btnPhoto.Text = PhotoName;
                 AddPhoto = true;
