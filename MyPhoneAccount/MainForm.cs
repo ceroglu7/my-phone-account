@@ -54,10 +54,9 @@ namespace MyPhoneAccount
             }
             Serialize();
             RefreshListView();
-            string AddedItemId = Convert.ToString(_addNewUserForm.ReturnPerson.Id);
-            for (int i = 1; i < lstvResult.Items.Count; i++)
+            for (int i = 1; i <= lstvResult.Items.Count; i++)
             {
-                if (AddedItemId == Convert.ToString(_persons[i].Id))
+                if (_addNewUserForm.ReturnPerson.Id == _persons[i].Id)
                 {
                     lstvResult.Items[i].Selected = true;
                 }
@@ -93,10 +92,9 @@ namespace MyPhoneAccount
             
             Serialize();
             RefreshListView();
-            string UpdatedItemId = Convert.ToString(_persons[item].Id);
-            for (int i = 1; i < lstvResult.Items.Count; i++)
+            for (int i = 1; i <= lstvResult.Items.Count; i++)
             {
-                if (UpdatedItemId == Convert.ToString(_persons[i].Id))
+                if (_persons[item].Id == _persons[i].Id)
                 {
                     lstvResult.Items[i].Selected = true;
                 }
