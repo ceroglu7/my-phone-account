@@ -110,6 +110,8 @@ namespace MyPhoneAccount
         private void MainForm_Load(object sender, EventArgs e)
         {
             CleanScreen();
+            lstvResult.MultiSelect = false;
+            txtSearch.Enabled = false;
             lstvResult.Clear();
             lstvResult.GridLines = true;
             lstvResult.FullRowSelect = true;
@@ -188,40 +190,40 @@ namespace MyPhoneAccount
                 lstvResult.Items.Clear();
                 foreach (var result in searchResult.ToList())
                 {
-                    lstvResult.Items.Add(Convert.ToString(result.CompanyName));
+                    lstvResult.Items.Add(Convert.ToString(result.Fullname));
                 }
             }
             else if (cmbSearchCategory.SelectedItem == "GSM Numarası")
             {
                 var searchResult = from item in _persons
-                                   where item.GSM.ToUpper().Contains(searchingText)
-                                   select new { item.GSM };
+                                   where item.GSM.Contains(searchingText)
+                                   select  item;
                 lstvResult.Items.Clear();
                 foreach (var result in searchResult)
                 {
-                    lstvResult.Items.Add(Convert.ToString(result));
+                    lstvResult.Items.Add(Convert.ToString(result.Fullname));
                 }
             }
             else if (cmbSearchCategory.SelectedItem == "Sabit Tel.")
             {
                 var searchResult = from item in _persons
                                    where item.Phone.ToUpper().Contains(searchingText)
-                                   select new { item.Phone };
+                                   select item;
                 lstvResult.Items.Clear();
                 foreach (var result in searchResult)
                 {
-                    lstvResult.Items.Add(Convert.ToString(result));
+                    lstvResult.Items.Add(Convert.ToString(result.Fullname));
                 }
             }
             else if (cmbSearchCategory.SelectedItem == "E-Mail")
             {
                 var searchResult = from item in _persons
                                    where item.Email.ToUpper().Contains(searchingText)
-                                   select new { item.Email };
+                                   select item;
                 lstvResult.Items.Clear();
                 foreach (var result in searchResult)
                 {
-                    lstvResult.Items.Add(Convert.ToString(result));
+                    lstvResult.Items.Add(Convert.ToString(result.Fullname));
                 }
             }
             else
@@ -255,6 +257,13 @@ namespace MyPhoneAccount
             login.Show();
             this.Hide();
 
+        }
+
+        private void cmbSearchCategory_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtSearch.Enabled = true;
+            txtSearch.Text = string.Empty;
+            RefreshListView();
         }
     }
 }

@@ -14,6 +14,7 @@ namespace MyPhoneAccount
         string PhotoWay, PhotoName;
         string GoalFolder = @"ProfilePictures";
         string DefaultPhotoWay = @"ProfilePictures\Default.png";
+        string DefaultPhotoName = "Default.png";
         bool AddPhoto;
         public PersonDto.Person ReturnPerson { get; set; }
         OpenFileDialog file = new OpenFileDialog();
@@ -81,6 +82,7 @@ namespace MyPhoneAccount
                 }
                 if (AddPhoto)
                 {
+
                     File.Copy(PhotoWay, GoalFolder + "\\" + person.Id + PhotoName);
                     person.AddedPhoto = true;
                     person.Photo = GoalFolder+ "\\" +person.Id+ PhotoName;
@@ -91,6 +93,7 @@ namespace MyPhoneAccount
                 {
                     person.AddedPhoto = false;
                     person.Photo = DefaultPhotoWay;
+                    person.PhotoName = DefaultPhotoName;
                 }
                 //Validation
                 PersonDtoValidator validation = new PersonDtoValidator();

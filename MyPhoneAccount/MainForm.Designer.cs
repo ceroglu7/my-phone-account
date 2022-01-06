@@ -140,13 +140,13 @@ namespace MyPhoneAccount
             "Şirket Adı",
             "GSM Numarası",
             "Sabit Tel.",
-            "E-Mail",
-            "Sıfırla"});
+            "E-Mail"});
             this.cmbSearchCategory.Location = new System.Drawing.Point(13, 7);
             this.cmbSearchCategory.Name = "cmbSearchCategory";
             this.cmbSearchCategory.Size = new System.Drawing.Size(107, 21);
             this.cmbSearchCategory.TabIndex = 9;
             this.cmbSearchCategory.Text = "Arama Kategorisi";
+            this.cmbSearchCategory.SelectedIndexChanged += new System.EventHandler(this.cmbSearchCategory_SelectedIndexChanged);
             // 
             // txtSearch
             // 
