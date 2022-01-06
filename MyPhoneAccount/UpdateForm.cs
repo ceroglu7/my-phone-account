@@ -50,10 +50,18 @@ namespace MyPhoneAccount
                     Fullname = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(txtNameSurname.Text),
                     GSM = txtGSM.Text,
                     Email = txtMail.Text,
-                    Phone = txtPhone.Text,
-                    IsCompany = false,
-                    CompanyName = String.Empty
+                    Phone = txtPhone.Text
                 };
+                if (txtCompany.Text==null||txtCompany.Text==string.Empty)
+                {
+                    person.CompanyName = string.Empty;
+                    person.IsCompany = false;
+                }
+                else
+                {
+                    person.CompanyName = txtCompany.Text;
+                    person.IsCompany = true;
+                }
                 if (UpdatePhoto)
                 {
                     if (pcbProfilePic.Image.Width != pcbProfilePic.Image.Height)

@@ -54,6 +54,14 @@ namespace MyPhoneAccount
             }
             Serialize();
             RefreshListView();
+            string AddedItemId = Convert.ToString(_addNewUserForm.ReturnPerson.Id);
+            for (int i = 1; i < lstvResult.Items.Count; i++)
+            {
+                if (AddedItemId == Convert.ToString(_persons[i].Id))
+                {
+                    lstvResult.Items[i].Selected = true;
+                }
+            }
         }
         private void btnUpdate_Click(object sender, EventArgs e)
         {
@@ -78,11 +86,21 @@ namespace MyPhoneAccount
                 _persons[item].Photo = update.ReturnPerson.Photo;
                 _persons[item].PhotoName = update.ReturnPerson.PhotoName;
                 _persons[item].AddedPhoto = update.ReturnPerson.AddedPhoto;
+                
+                
 
             }
-            CleanScreen();
+            
             Serialize();
             RefreshListView();
+            string UpdatedItemId = Convert.ToString(_persons[item].Id);
+            for (int i = 1; i < lstvResult.Items.Count; i++)
+            {
+                if (UpdatedItemId == Convert.ToString(_persons[i].Id))
+                {
+                    lstvResult.Items[i].Selected = true;
+                }
+            }
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -96,9 +114,9 @@ namespace MyPhoneAccount
                 Deserialize();
                 lblFullName.Text = "Ad Soyad : " + _persons[item].Fullname;
                 lblCompanyName.Text = "Firma Adı : " + _persons[item].CompanyName;
-                lblGSM.Text = "GSM No : " + _persons[item].GSM;
+                lblGSM.Text = "GSM : " + _persons[item].GSM;
                 lblPhone.Text = "Sabit Telefon : " + _persons[item].Phone;
-                lblMail.Text = "E-Mail Adresi : " + _persons[item].Email;
+                lblMail.Text = "E-Mail : " + _persons[item].Email;
                 pcbProfilePic.ImageLocation = _persons[item].Photo;
                 lblNoPerson1.Text = null;
                 btnCreateQR.Enabled = true;
@@ -113,7 +131,6 @@ namespace MyPhoneAccount
             lstvResult.MultiSelect = false;
             txtSearch.Enabled = false;
             lstvResult.Clear();
-            lstvResult.GridLines = true;
             lstvResult.FullRowSelect = true;
             lstvResult.Columns.Add("Kişiler");
             string path = @"persons.json";

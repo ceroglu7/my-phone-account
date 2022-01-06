@@ -90,7 +90,7 @@ namespace MyPhoneAccount
             // lblFullName
             // 
             this.lblFullName.AutoSize = true;
-            this.lblFullName.Location = new System.Drawing.Point(228, 199);
+            this.lblFullName.Location = new System.Drawing.Point(220, 199);
             this.lblFullName.Name = "lblFullName";
             this.lblFullName.Size = new System.Drawing.Size(35, 13);
             this.lblFullName.TabIndex = 4;
@@ -99,7 +99,7 @@ namespace MyPhoneAccount
             // lblCompanyName
             // 
             this.lblCompanyName.AutoSize = true;
-            this.lblCompanyName.Location = new System.Drawing.Point(228, 228);
+            this.lblCompanyName.Location = new System.Drawing.Point(220, 228);
             this.lblCompanyName.Name = "lblCompanyName";
             this.lblCompanyName.Size = new System.Drawing.Size(35, 13);
             this.lblCompanyName.TabIndex = 5;
@@ -108,7 +108,7 @@ namespace MyPhoneAccount
             // lblGSM
             // 
             this.lblGSM.AutoSize = true;
-            this.lblGSM.Location = new System.Drawing.Point(228, 255);
+            this.lblGSM.Location = new System.Drawing.Point(220, 255);
             this.lblGSM.Name = "lblGSM";
             this.lblGSM.Size = new System.Drawing.Size(35, 13);
             this.lblGSM.TabIndex = 6;
@@ -117,7 +117,7 @@ namespace MyPhoneAccount
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(228, 283);
+            this.lblPhone.Location = new System.Drawing.Point(220, 283);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(35, 13);
             this.lblPhone.TabIndex = 7;
@@ -126,7 +126,7 @@ namespace MyPhoneAccount
             // lblMail
             // 
             this.lblMail.AutoSize = true;
-            this.lblMail.Location = new System.Drawing.Point(228, 314);
+            this.lblMail.Location = new System.Drawing.Point(220, 314);
             this.lblMail.Name = "lblMail";
             this.lblMail.Size = new System.Drawing.Size(35, 13);
             this.lblMail.TabIndex = 8;
@@ -188,7 +188,7 @@ namespace MyPhoneAccount
             // 
             // pcbProfilePic
             // 
-            this.pcbProfilePic.Location = new System.Drawing.Point(245, 44);
+            this.pcbProfilePic.Location = new System.Drawing.Point(245, 48);
             this.pcbProfilePic.Name = "pcbProfilePic";
             this.pcbProfilePic.Size = new System.Drawing.Size(130, 130);
             this.pcbProfilePic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
