@@ -92,13 +92,7 @@ namespace MyPhoneAccount
             
             Serialize();
             RefreshListView();
-            for (int i = 1; i <= lstvResult.Items.Count; i++)
-            {
-                if (_persons[item].Id == _persons[i].Id)
-                {
-                    lstvResult.Items[i].Selected = true;
-                }
-            }
+            lstvResult.Items[item].Selected = true;
         }
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
